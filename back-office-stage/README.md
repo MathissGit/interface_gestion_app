@@ -1,33 +1,40 @@
-# Back-office stage
+# Back-office Stage
 
 Mise en place d'un back-office dans le cadre d'un stage de première année au sein de l'EPSI
 
 ## Pour commencer
 
-Entrez ici les instructions pour bien débuter avec votre projet...
+Bienvenue dans le projet de back-office. Ce projet vise à créer une interface de gestion pour diverses opérations internes.
 
 ### Pré-requis
 
-Ce qu'il est requis pour commencer avec votre projet...
+Ce qu'il est requis pour commencer avec votre projet :
 
-- Programme 1
-- Programme 2
-- etc...
+- Node.js
+- npm (Node Package Manager)
+- React
 
 ### Installation
 
-Les étapes pour installer votre programme....
+Les étapes pour installer votre programme :
 
-Dites ce qu'il faut faire...
+1. Clonez le dépôt :
+   ```bash
+   git clone https://github.com/MathissGit/interface_gestion_app.git
 
-_exemple_: Executez la commande ``telnet mapscii.me`` pour commencer ensuite [...]
+2. Accédez au répertoire du projet :
+   ```bash
+   cd interface_gestion_app
 
-
-Ensuite vous pouvez montrer ce que vous obtenez au final...
+3. Installez les dépendances :
+   ```bash
+   npm install
 
 ## Démarrage
 
-Dites comment faire pour lancer votre projet
+Pour lancer le projet, exécutez la commande suivante :
+```bash
+   npm start
 
 ## Fabriqué avec
 
