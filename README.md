@@ -19,22 +19,25 @@ Ce qu'il est requis pour commencer avec votre projet :
 Les étapes pour installer votre programme :
 
 1. Clonez le dépôt :
-   ```bash
-   git clone https://github.com/MathissGit/interface_gestion_app.git
+    ```bash
+    git clone https://github.com/MathissGit/interface_gestion_app.git
+    ```
 
 2. Accédez au répertoire du projet :
-   ```bash
-   cd interface_gestion_app
+    ```bash
+    cd interface_gestion_app
+    ```
 
 3. Installez les dépendances :
-   ```bash
-   npm install
-
+    ```bash
+    npm install
+    ```
 ## Démarrage
 
 1. Pour lancer le projet, exécutez la commande suivante :
    ```bash
    npm start
+   ```
 
 ## Fabriqué avec
 
