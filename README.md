@@ -32,8 +32,8 @@ Les étapes pour installer votre programme :
 
 ## Démarrage
 
-Pour lancer le projet, exécutez la commande suivante :
-```bash
+1. Pour lancer le projet, exécutez la commande suivante :
+   ```bash
    npm start
 
 ## Fabriqué avec
