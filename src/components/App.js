@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Sidebar from './components/Sidebar';
-import Header from './components/Header';
-import UserProfile from './components/UserProfile';
+import Sidebar from './Sidebar';
+import Header from './Header';
+import UserProfile from './UserProfile';
 
 const App = () => {
     return (
