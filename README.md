@@ -44,8 +44,8 @@ Listez les versions ici
 
 ## Auteurs
 Listez le(s) auteur(s) du projet ici !
-* **Lamonnier Alexis**  [@outout14](https://github.com/alexkjzz)
-* **Sinneux Mathis**  [@outout14](https://github.com/MathissGit)
-* **Werquin Lucien**  [@outout14](https://github.com/lucien-wrq)
+* **Lamonnier Alexis**  [@alexkjzz](https://github.com/alexkjzz)
+* **Sinneux Mathis**  [@MathissGit](https://github.com/MathissGit)
+* **Werquin Lucien**  [@lucien-wrq](https://github.com/lucien-wrq)
 
 Lisez la liste des [contributeurs](https://github.com/MathissGit/interface_gestion_app/graphs/contributors) pour voir qui à aidé au projet !
