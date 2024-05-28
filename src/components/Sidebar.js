@@ -23,7 +23,7 @@ const Sidebar = ({ toggleDarkMode, darkMode }) => {
             onMouseLeave={() => setHover(false)}
         >
             <List className="sidebar-list">
-                <ListItem button component={Link} to="/">
+                <ListItem button component={Link} to="/" >
                     <ListItemIcon>
                         <HomeIcon />
                     </ListItemIcon>
@@ -55,7 +55,7 @@ const Sidebar = ({ toggleDarkMode, darkMode }) => {
                     <ListItemIcon>
                         <CalendarTodayIcon />
                     </ListItemIcon>
-                    <ListItemText primary='Rendez-vous' className="list-item-text" />
+                    <ListItemText primary='Entrevue' className="list-item-text" />
                 </ListItem>
 
                 <ListItem button component={Link} to="/transaction">
