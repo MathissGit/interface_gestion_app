@@ -21,6 +21,10 @@ import IconButton from '@mui/material/IconButton';
 import Avatar from '@mui/material/Avatar';
 import { LineChart } from '@mui/x-charts/LineChart';
 import { BarChart } from '@mui/x-charts/BarChart';
+import Header from './Header';
+import CourseList from './CourseList';
+import CoachList from './CoachList';
+import PatientList from './PatientList';
 
 const App = () => {
     const [darkMode, setDarkMode] = useState(false);
@@ -67,7 +71,7 @@ function createData(name, email, image) {
                 <div style={{ display: 'flex', backgroundColor }}>
                     <Sidebar toggleDarkMode={toggleDarkMode} darkMode={darkMode} />
                     <div style={{ flexGrow: 1 }}>
-
+                        <Header />
                         <div style={{ padding: '20px' }}>
 
                             <Routes>
@@ -204,11 +208,13 @@ function createData(name, email, image) {
                                     </div>
                                 } />
                                 <Route path="/profile" element={<UserProfile />} />
+                                <Route path="/courses" element={<CourseList />} />
+                                <Route path="/coaches" element={<CoachList />} />
+                                <Route path="/patients" element={<PatientList />} />
                             </Routes>
                         </div>
-                    </div>
+                        </div>
                 </div>
-                
             </Router>
         </ThemeProvider>
     );
