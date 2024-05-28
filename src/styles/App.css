@@ -15,6 +15,17 @@ body {
   box-shadow: var(--sidebar-box-shadow); /* Add this line for the shadow */
 }
 
+.sidebar-list {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-bottom {
+  margin-top: auto;
+  padding-bottom: 20px; /* Adjust this value as needed */
+}
+
 /* Variables for light mode */
 :root {
   --bg-color: #ffffff;

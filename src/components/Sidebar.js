@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { List, ListItem, ListItemIcon, ListItemText, Switch, FormControlLabel } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
 import PostAddIcon from '@mui/icons-material/PostAdd';
@@ -9,13 +9,13 @@ import PaymentIcon from '@mui/icons-material/Payment';
 import GroupIcon from '@mui/icons-material/Group';
 import SettingsIcon from '@mui/icons-material/Settings';
 import BuildIcon from '@mui/icons-material/Build';
-import PersonIcon from '@mui/icons-material/Person';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { Link } from 'react-router-dom';
 
 const Sidebar = ({ toggleDarkMode, darkMode }) => {
     return (
         <div className="sidebar">
-            <List>
+            <List className="sidebar-list">
                 <ListItem button component={Link} to="/">
                     <ListItemIcon>
                         <HomeIcon />
@@ -78,18 +78,21 @@ const Sidebar = ({ toggleDarkMode, darkMode }) => {
                     </ListItemIcon>
                     <ListItemText primary='Outils' />
                 </ListItem>
+
+                <div className="sidebar-bottom">
+                    <FormControlLabel
+                        control={<Switch checked={darkMode} onChange={toggleDarkMode} />}
+                        label="Mode sombre"
+                        style={{ marginLeft: '10px', marginTop: '160px' }}
+                    />
+                    <ListItem button component={Link} to="/profile">
+                        <ListItemIcon>
+                            <AccountCircleIcon />
+                        </ListItemIcon>
+                        <ListItemText primary='Profile' />
+                    </ListItem>
+                </div>
             </List>
-            <FormControlLabel
-                control={<Switch checked={darkMode} onChange={toggleDarkMode} />}
-                label="Mode sombre"
-                style={{ marginLeft: '10px', marginTop: '20px' }}
-            />
-            <ListItem button component={Link} to="/profile">
-                    <ListItemIcon>
-                        <PersonIcon />
-                    </ListItemIcon>
-                    <ListItemText primary='Profile' />
-                </ListItem>
         </div>
     );
 };
