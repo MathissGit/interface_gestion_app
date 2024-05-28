@@ -8,11 +8,23 @@ body {
 }
 
 .sidebar {
-  width: 250px;
+  width: 60px;
   height: 100vh;
   background-color: var(--sidebar-bg-color);
   color: var(--sidebar-text-color);
-  box-shadow: var(--sidebar-box-shadow); /* Add this line for the shadow */
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--sidebar-box-shadow);
+  transition: width 0.3s;
+  overflow: hidden; 
+}
+
+.sidebar-expanded {
+  width: 250px;
+}
+
+.sidebar-collapsed .list-item-text {
+  display: none;
 }
 
 .sidebar-list {
@@ -23,7 +35,8 @@ body {
 
 .sidebar-bottom {
   margin-top: auto;
-  padding-bottom: 20px; /* Adjust this value as needed */
+  padding-bottom: 20px;
+  padding-left: 8px; 
 }
 
 /* Variables for light mode */
