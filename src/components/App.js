@@ -1,7 +1,7 @@
 // src/components/App.js
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { CssBaseline, ThemeProvider, createTheme } from '@mui/material';
+import { CssBaseline, ThemeProvider, Toolbar, createTheme } from '@mui/material';
 import Sidebar from './Sidebar';
 import UserProfile from './UserProfile';
 import '../styles/App.css';
@@ -21,10 +21,14 @@ import IconButton from '@mui/material/IconButton';
 import Avatar from '@mui/material/Avatar';
 import { LineChart } from '@mui/x-charts/LineChart';
 import { BarChart } from '@mui/x-charts/BarChart';
+<<<<<<< HEAD
 import Header from './Header';
 import CourseList from './CourseList';
 import CoachList from './CoachList';
 import PatientList from './PatientList';
+=======
+import ListUsers from './UsersList';
+>>>>>>> d944a8b3adb3e1fe8be336404bc135b7cc4e6fb4
 
 const App = () => {
     const [darkMode, setDarkMode] = useState(false);
@@ -69,7 +73,7 @@ function createData(name, email, image) {
             <CssBaseline />
             <Router>
                 <div style={{ display: 'flex', backgroundColor }}>
-                    <Sidebar toggleDarkMode={toggleDarkMode} darkMode={darkMode} />
+                    <Sidebar position="fixed" toggleDarkMode={toggleDarkMode} darkMode={darkMode} />
                     <div style={{ flexGrow: 1 }}>
                         <Header />
                         <div style={{ padding: '20px' }}>
@@ -207,6 +211,7 @@ function createData(name, email, image) {
                                         </Box>
                                     </div>
                                 } />
+                                <Route path="/utilisateurs" element={<ListUsers />} />
                                 <Route path="/profile" element={<UserProfile />} />
                                 <Route path="/courses" element={<CourseList />} />
                                 <Route path="/coaches" element={<CoachList />} />
