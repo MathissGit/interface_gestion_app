@@ -4,6 +4,7 @@ import { CssBaseline, ThemeProvider, createTheme } from '@mui/material';
 import Sidebar from './Sidebar';
 import UserProfile from './UserProfile';
 import '../styles/App.css';
+import HeaderProfile from './HeaderProfile';
 
 const App = () => {
     const [darkMode, setDarkMode] = useState(false);
