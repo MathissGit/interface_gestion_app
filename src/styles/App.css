@@ -12,22 +12,26 @@ body {
   height: 100vh;
   background-color: var(--sidebar-bg-color);
   color: var(--sidebar-text-color);
+  box-shadow: var(--sidebar-box-shadow); /* Add this line for the shadow */
 }
 
 /* Variables for light mode */
 :root {
   --bg-color: #ffffff;
   --text-color: #000000;
-  --sidebar-bg-color: #f4f4f4;
+  --sidebar-bg-color: #ffffff;
   --sidebar-text-color: #000000;
+  --sidebar-box-shadow: 5px 0 5px rgba(0, 0, 0, 0.1);
 }
 
 /* Variables for dark mode */
 body[data-theme='dark'] {
   --bg-color: #121212;
-  --text-color: #ffffff;
-  --sidebar-bg-color: #333333;
+  --text-color: #eff2f4;
+  --sidebar-bg-color: #031c30;
   --sidebar-text-color: #ffffff;
+  --sidebar-box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+
 }
 
 .App {

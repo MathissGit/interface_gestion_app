@@ -23,11 +23,13 @@ const App = () => {
         setDarkMode(!darkMode);
     };
 
+    const backgroundColor = darkMode ? '#41403f' : '#c1c0bd';
+
     return (
         <ThemeProvider theme={theme}>
             <CssBaseline />
             <Router>
-                <div style={{ display: 'flex' }}>
+                <div style={{ display: 'flex', backgroundColor }}>
                     <Sidebar toggleDarkMode={toggleDarkMode} darkMode={darkMode} />
                     <div style={{ flexGrow: 1 }}>
                         <Header />
