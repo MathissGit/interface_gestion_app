@@ -31,7 +31,6 @@ const App = () => {
                 <div style={{ display: 'flex', backgroundColor }}>
                     <Sidebar toggleDarkMode={toggleDarkMode} darkMode={darkMode} />
                     <div style={{ flexGrow: 1 }}>
-                        <Header />
                         <div style={{ padding: '20px' }}>
                             <Routes>
                                 <Route path="/" element={<h1>Bienvenue sur le tableau de bord</h1>} />
