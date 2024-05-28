@@ -9,6 +9,7 @@ import PaymentIcon from '@mui/icons-material/Payment';
 import GroupIcon from '@mui/icons-material/Group';
 import SettingsIcon from '@mui/icons-material/Settings';
 import BuildIcon from '@mui/icons-material/Build';
+import PersonIcon from '@mui/icons-material/Person';
 import { Link } from 'react-router-dom';
 
 const Sidebar = ({ toggleDarkMode, darkMode }) => {
@@ -83,6 +84,12 @@ const Sidebar = ({ toggleDarkMode, darkMode }) => {
                 label="Mode sombre"
                 style={{ marginLeft: '10px', marginTop: '20px' }}
             />
+            <ListItem button component={Link} to="/profile">
+                    <ListItemIcon>
+                        <PersonIcon />
+                    </ListItemIcon>
+                    <ListItemText primary='Profile' />
+                </ListItem>
         </div>
     );
 };
