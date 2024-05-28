@@ -21,14 +21,11 @@ import IconButton from '@mui/material/IconButton';
 import Avatar from '@mui/material/Avatar';
 import { LineChart } from '@mui/x-charts/LineChart';
 import { BarChart } from '@mui/x-charts/BarChart';
-<<<<<<< HEAD
 import Header from './Header';
 import CourseList from './CourseList';
 import CoachList from './CoachList';
 import PatientList from './PatientList';
-=======
 import ListUsers from './UsersList';
->>>>>>> d944a8b3adb3e1fe8be336404bc135b7cc4e6fb4
 
 const App = () => {
     const [darkMode, setDarkMode] = useState(false);
