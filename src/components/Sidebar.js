@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { List, ListItem, ListItemIcon, ListItemText, Switch, FormControlLabel } from '@mui/material';
+import { List, ListItem, ListItemIcon, ListItemText, Switch, FormControlLabel, Slide } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
 import PostAddIcon from '@mui/icons-material/PostAdd';
 import SchoolIcon from '@mui/icons-material/School';
@@ -11,13 +11,15 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import BuildIcon from '@mui/icons-material/Build';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import Brightness2Icon from '@mui/icons-material/Brightness2';
+import useScrollTrigger from '@mui/material/useScrollTrigger';
 import { Link } from 'react-router-dom';
 
 const Sidebar = ({ toggleDarkMode, darkMode }) => {
     const [hover, setHover] = useState(false);
+    const trigger = useScrollTrigger();
 
     return (
-        <div 
+        <div in={!trigger}
             className={`sidebar ${hover ? 'sidebar-expanded' : 'sidebar-collapsed'}`}
             onMouseEnter={() => setHover(true)}
             onMouseLeave={() => setHover(false)}
