@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Sidebar from './Sidebar';
-import Header from './Header';
 import UserProfile from './UserProfile';
 
 const App = () => {
@@ -10,7 +9,6 @@ const App = () => {
             <div style={{ display: 'flex' }}>
                 <Sidebar />
                 <div style={{ flexGrow: 1 }}>
-                    <Header />
                     <div style={{ padding: '20px' }}>
                         <Routes>
                             <Route path="/" element={<h1>Bienvenue sur le tableau de bord</h1>} />

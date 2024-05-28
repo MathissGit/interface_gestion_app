@@ -24,7 +24,7 @@ code {
   padding: 10px 20px;
 }
 
-.header {
+.HeaderProfile {
   background-color: #007bff;
   color: #fff;
   padding: 20px;
@@ -32,17 +32,17 @@ code {
   align-items: center;
 }
 
-.header img {
+.HeaderProfile img {
   border-radius: 50%;
   width: 60px;
   margin-right: 20px;
 }
 
-.header h1 {
+.HeaderProfile h1 {
   margin: 0;
 }
 
-.header p {
+.HeaderProfile p {
   margin: 0;
 }
 
