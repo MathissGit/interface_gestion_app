@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { CssBaseline, ThemeProvider, createTheme } from '@mui/material';
 import Sidebar from './Sidebar';
-import Header from './Header';
 import UserProfile from './UserProfile';
 import '../styles/App.css';
 
