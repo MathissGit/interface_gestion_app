@@ -8,7 +8,7 @@ body {
 }
 
 .sidebar {
-  width: 60px;
+  width: 100px;
   height: 100vh;
   background-color: var(--sidebar-bg-color);
   color: var(--sidebar-text-color);
@@ -17,10 +17,11 @@ body {
   box-shadow: var(--sidebar-box-shadow);
   transition: width 0.3s;
   overflow: hidden; 
+  
 }
 
 .sidebar-expanded {
-  width: 250px;
+  width: 320px;
 }
 
 .sidebar-collapsed .list-item-text {
@@ -95,3 +96,4 @@ to {
   transform: rotate(360deg);
 }
 }
+
