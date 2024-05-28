@@ -4,6 +4,7 @@ import { CssBaseline, ThemeProvider, createTheme } from '@mui/material';
 import Sidebar from './Sidebar';
 import UserProfile from './UserProfile';
 import '../styles/App.css';
+import HeaderProfile from './HeaderProfile';
 
 const App = () => {
     const [darkMode, setDarkMode] = useState(false);
@@ -31,7 +32,6 @@ const App = () => {
                 <div style={{ display: 'flex', backgroundColor }}>
                     <Sidebar toggleDarkMode={toggleDarkMode} darkMode={darkMode} />
                     <div style={{ flexGrow: 1 }}>
-                        <Header />
                         <div style={{ padding: '20px' }}>
                             <Routes>
                                 <Route path="/" element={<h1>Bienvenue sur le tableau de bord</h1>} />
