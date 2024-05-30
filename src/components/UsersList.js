@@ -1,11 +1,8 @@
-// src/components/ListUsers.js
 import React, { useContext, useState } from 'react';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TableFooter, TablePagination } from '@mui/material';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TableFooter, TablePagination, IconButton, Box } from '@mui/material';
 import { SearchContext } from '../contexts/SearchContext';
 import PropTypes from 'prop-types';
 import { useTheme } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import IconButton from '@mui/material/IconButton';
 import FirstPageIcon from '@mui/icons-material/FirstPage';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
@@ -28,30 +25,20 @@ function UserList() {
   );
 
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * usersPerPage - filteredUsers.length) : 0;
-  const rows = users.map((user) => ({
-    id: user.id,
-    name: `${user.firstname} ${user.lastname}`,
-    datebirth: user.datebirth,
-    email: user.email,
-    plan: user.plan,
-    role: user.role,
-    avatar: user.avatar,
-    dateRegistration: user.dateRegistration,
-  }));
 
-  // const handleChangePage = (event, newPage) => {
-  //   setPage(newPage);
-  // };
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
 
-  // const handleChangeRowsPerPage = (event) => {
-  //   setRowsPerPage(parseInt(event.target.value, 10));
-  //   setPage(0);
-  // };
+  const handleChangeRowsPerPage = (event) => {
+    setUsersPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
 
   return (
     <TableContainer component={Paper} className="fullPageContainer">
       <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-      <Table stickyHeader aria-label="sticky table" sx={{ minWidth: 650 }}>
+      <Table>
         <TableHead>
           <TableRow>
             <TableCell align="center">ID</TableCell>
@@ -77,7 +64,7 @@ function UserList() {
                     alt={`${user.name} avatar`}
                     style={{ width: 50, height: 50, borderRadius: '50%', marginRight: 8 }}
                   />
-                  {user.name}
+                  {`${user.firstname} ${user.lastname}`}
                 </div>
               </TableCell>
               <TableCell align="center">{user.datebirth}</TableCell>
@@ -100,7 +87,7 @@ function UserList() {
           ))}
           {emptyRows > 0 && (
             <TableRow style={{ height: 53 * emptyRows }}>
-              <TableCell colSpan={7} />
+              <TableCell colSpan={8} />
             </TableRow>
           )}
         </TableBody>
@@ -108,18 +95,12 @@ function UserList() {
           <TableRow>
             <TablePagination
               rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
-              colSpan={7}
+              colSpan={8}
               count={filteredUsers.length}
               rowsPerPage={usersPerPage}
               page={page}
-              SelectProps={{
-                inputProps: {
-                  'aria-label': 'rows per page',
-                },
-                native: true,
-              }}
-              // onPageChange={handleChangePage}
-              // onRowsPerPageChange={handleChangeRowsPerPage}
+              onPageChange={handleChangePage}
+              onRowsPerPageChange={handleChangeRowsPerPage}
               ActionsComponent={TablePaginationActions}
             />
           </TableRow>

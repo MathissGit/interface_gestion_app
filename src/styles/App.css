@@ -101,16 +101,14 @@ body[data-theme='dark'] {
     transform: rotate(360deg);
   }
 }
-
-.table-container {
-  height: 90vh; 
-}
+/* 
 .fullPageContainer {
   height: 80%;
   width: 100%;
-}
-/* Ajoutez cette règle pour gérer l'alignement du contenu principal à côté de la sidebar */
+  color: red;
+} */
+/* 
 .dashboard {
   display: flex;
   flex-direction: row;
-}
+} */

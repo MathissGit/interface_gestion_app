@@ -1,4 +1,3 @@
-// src/components/PatientList.js
 import React, { useContext } from 'react';
 import { SearchContext } from '../contexts/SearchContext';
 import SearchBar from './SearchBar';
