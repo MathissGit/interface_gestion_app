@@ -11,67 +11,73 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import BuildIcon from '@mui/icons-material/Build';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import Brightness2Icon from '@mui/icons-material/Brightness2';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import { styled } from '@mui/material/styles';
 
 const Sidebar = ({ toggleDarkMode, darkMode }) => {
-    const [hover, setHover] = useState(false);
+    const location = useLocation();
+
+    const StyledListItem = styled(ListItem)(({ theme }) => ({
+        '&.active, &:hover': {
+            color: theme.palette.primary.main,
+            '& .MuiListItemIcon-root': {
+                color: theme.palette.primary.main,
+            },
+        },
+    }));
 
     return (
-        <div
-            className="sidebar"
-            onMouseEnter={() => setHover(true)}
-            onMouseLeave={() => setHover(false)}
-        >
+        <div className="sidebar">
             <List className="sidebar-list">
-                <ListItem className="sidebar-item" button component={Link} to="/">
+                <ListItem className={`sidebar-item ${location.pathname === '/' ? 'active' : ''}`} button component={Link} to="/" >
                     <ListItemIcon>
                         <HomeIcon />
                     </ListItemIcon>
                     <ListItemText primary='Dashboard' className="list-item-text" />
                 </ListItem>
-                <ListItem className="sidebar-item" button component={Link} to="/post">
+                <ListItem className={`sidebar-item ${location.pathname === '/post' ? 'active' : ''}`} button component={Link} to="/post">
                     <ListItemIcon>
                         <PostAddIcon />
                     </ListItemIcon>
                     <ListItemText primary='Post' className="list-item-text" />
                 </ListItem>
-                <ListItem className="sidebar-item" button component={Link} to="/cours">
+                <ListItem className={`sidebar-item ${location.pathname === '/cours' ? 'active' : ''}`} button component={Link} to="/cours">
                     <ListItemIcon>
                         <SchoolIcon />
                     </ListItemIcon>
                     <ListItemText primary='Cours' className="list-item-text" />
                 </ListItem>
-                <ListItem className="sidebar-item" button component={Link} to="/messages">
+                <ListItem className={`sidebar-item ${location.pathname === '/messages' ? 'active' : ''}`} button component={Link} to="/messages">
                     <ListItemIcon>
                         <MessageIcon />
                     </ListItemIcon>
                     <ListItemText primary='Messages' className="list-item-text" />
                 </ListItem>
-                <ListItem className="sidebar-item" button component={Link} to="/rendez-vous">
+                <ListItem className={`sidebar-item ${location.pathname === '/rendez-vous' ? 'active' : ''}`} button component={Link} to="/rendez-vous">
                     <ListItemIcon>
                         <CalendarTodayIcon />
                     </ListItemIcon>
                     <ListItemText primary='Entrevue' className="list-item-text" />
                 </ListItem>
-                <ListItem className="sidebar-item" button component={Link} to="/transaction">
+                <ListItem className={`sidebar-item ${location.pathname === '/transaction' ? 'active' : ''}`} button component={Link} to="/transaction">
                     <ListItemIcon>
                         <PaymentIcon />
                     </ListItemIcon>
                     <ListItemText primary='Transaction' className="list-item-text" />
                 </ListItem>
-                <ListItem className="sidebar-item" button component={Link} to="/utilisateurs">
+                <ListItem className={`sidebar-item ${location.pathname === '/utilisateurs' ? 'active' : ''}`} button component={Link} to="/utilisateurs">
                     <ListItemIcon>
                         <GroupIcon />
                     </ListItemIcon>
                     <ListItemText primary='Utilisateurs' className="list-item-text" />
                 </ListItem>
-                <ListItem className="sidebar-item" button component={Link} to="/paramètres">
+                <ListItem className={`sidebar-item ${location.pathname === '/parametres' ? 'active' : ''}`} button component={Link} to="/parametres">
                     <ListItemIcon>
                         <SettingsIcon />
                     </ListItemIcon>
                     <ListItemText primary='Paramètres' className="list-item-text" />
                 </ListItem>
-                <ListItem className="sidebar-item" button component={Link} to="/outils">
+                <ListItem className={`sidebar-item ${location.pathname === '/outils' ? 'active' : ''}`} button component={Link} to="/outils">
                     <ListItemIcon>
                         <BuildIcon />
                     </ListItemIcon>
@@ -88,7 +94,7 @@ const Sidebar = ({ toggleDarkMode, darkMode }) => {
                             className="list-item-text"
                         />
                     </ListItem>
-                    <ListItem className="sidebar-item" button component={Link} to="/profile">
+                    <ListItem className={`sidebar-item ${location.pathname === '/profile' ? 'active' : ''}`} button component={Link} to="/profile">
                         <ListItemIcon>
                             <AccountCircleIcon />
                         </ListItemIcon>

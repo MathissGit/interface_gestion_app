@@ -5,7 +5,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { LineChart } from '@mui/x-charts/LineChart';
 import { BarChart } from '@mui/x-charts/BarChart';
 import { styled } from '@mui/material/styles';
-
+import { users } from '../datas/users';
 
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -15,18 +15,9 @@ const Item = styled(Paper)(({ theme }) => ({
     color: theme.palette.text.secondary,
 }));
 
-function createData(name, email, image) {
-    return { name, email, image };
-}
-
-const rows = [
-    createData('Benbaloulie Nahim', 'nahim@nahim.com', 'BN'),
-    createData('Roche Pierre', 'pierre@roche.com', 'RP'),
-    createData('Lefevre Paul', 'paul@lefevre.com', 'LP'),
-    createData('Blanc Thomas', 'thomas@blanc.com', 'BT'),
-];
-
 function Dashboard() {
+    const coaches = users.filter(user => user.role === 'Coach');
+
     return (
         <div>
             <Box sx={{ flexGrow: 1 }}>
@@ -34,7 +25,7 @@ function Dashboard() {
                     <Grid item xs={4}>
                         <Item>
                             Utilisateurs
-                            <h2>500</h2>
+                            <h2>{users.length}</h2>
                             <p>+20%</p>
                         </Item>
                     </Grid>
@@ -57,9 +48,6 @@ function Dashboard() {
                             Fréquentation
                             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                                 <LineChart
-                                    sx={{
-                                        // Vous pouvez ajouter des styles spécifiques ici si nécessaire
-                                    }}
                                     xAxis={[{ data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] }]}
                                     series={[
                                         {
@@ -76,28 +64,18 @@ function Dashboard() {
                         <Item>
                             <TableContainer component={Paper}>
                                 <Table aria-label="simple table">
-                                    <TableHead>
-                                        <TableRow>
-                                            <TableCell>Coach</TableCell>
-                                            <TableCell align="right">Name</TableCell>
-                                            <TableCell align="right">Email</TableCell>
-                                            <TableCell align="right">Editer</TableCell>
-                                        </TableRow>
-                                    </TableHead>
+                                    <h2 style={{ paddingLeft: 10}}>Coachs</h2>
                                     <TableBody>
-                                        {rows.map((row) => (
-                                            <TableRow
-                                                key={row.name}
-                                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                            >
-                                                <TableCell component="th" scope="row">
-                                                    <Avatar>{row.image}</Avatar>
+                                        {coaches.map((user) => (
+                                            <TableRow key={user.email}>
+                                                <TableCell style={{ display:'flex', paddingRight: '0' }} component="th" scope="row">
+                                                    <Avatar src={user.avatar} alt={`${user.firstname} ${user.lastname}`} />
+                                                    <div style={{ paddingLeft: 15}}>
+                                                        <p style={{ padding: '0', margin: 0, fontWeight: 'bold' }}>{user.firstname + ' ' + user.lastname}</p>
+                                                        <p style={{ margin: 0 }}>{user.email}</p>
+                                                    </div>
                                                 </TableCell>
-                                                <TableCell component="th" scope="row">
-                                                    {row.name}
-                                                </TableCell>
-                                                <TableCell align="right">{row.email}</TableCell>
-                                                <TableCell align="right">
+                                                <TableCell style={{ paddingRight: '0', paddingLeft: '0', textAlign: 'center' }}>
                                                     <IconButton aria-label="edit">
                                                         <EditIcon />
                                                     </IconButton>

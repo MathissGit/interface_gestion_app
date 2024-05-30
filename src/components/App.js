@@ -6,7 +6,6 @@ import UserProfile from './UserProfile';
 import '../styles/App.css';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
-import Header from './Header';
 import CourseList from './CourseList';
 import CoachList from './CoachList';
 import PatientList from './PatientList';
@@ -54,13 +53,11 @@ const App = () => {
             <Router>
                 <div style={{ display: 'flex', backgroundColor }} className='dashboard'>
                 <Sidebar 
-                        position="absolute" 
                         toggleDarkMode={toggleDarkMode} 
                         darkMode={darkMode} 
                     />
                     
-                    <div className={`dashboard-content ${sidebarExpanded ? 'dashboard-content-expanded' : ''}`}>
-                        <Header style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}/>
+                    <div className="fullPageContainer">
                         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '2vh'}}>
                             <Routes>
                                 <Route path="/" element={<Dashboard />} />
