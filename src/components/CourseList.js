@@ -1,4 +1,3 @@
-// src/components/CourseList.js
 import React, { useContext } from 'react';
 import { SearchContext } from '../contexts/SearchContext';
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
