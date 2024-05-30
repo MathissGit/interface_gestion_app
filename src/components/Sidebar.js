@@ -13,6 +13,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import Brightness2Icon from '@mui/icons-material/Brightness2';
 import { Link, useLocation } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
+import StickyBox from "react-sticky-box";
 
 const Sidebar = ({ toggleDarkMode, darkMode }) => {
     const location = useLocation();
@@ -27,7 +28,8 @@ const Sidebar = ({ toggleDarkMode, darkMode }) => {
     }));
 
     return (
-        <div className="sidebar">
+
+        <StickyBox  className="sidebar">
             <List className="sidebar-list">
                 <ListItem className={`sidebar-item ${location.pathname === '/' ? 'active' : ''}`} button component={Link} to="/" >
                     <ListItemIcon>
@@ -102,7 +104,7 @@ const Sidebar = ({ toggleDarkMode, darkMode }) => {
                     </ListItem>
                 </div>
             </List>
-        </div>
+        </StickyBox>
     );
 };
 
