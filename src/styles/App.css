@@ -1,5 +1,3 @@
-/* App.css */
-
 body {
   margin: 0;
   font-family: 'Roboto', sans-serif;
@@ -8,7 +6,8 @@ body {
 }
 
 .sidebar {
-  width: 100px;
+  width: 9vh; /* Ajustez cette valeur si nécessaire */
+  min-width: 60px; /* Ajout d'une largeur minimale */
   height: 100vh;
   background-color: var(--sidebar-bg-color);
   color: var(--sidebar-text-color);
@@ -17,11 +16,18 @@ body {
   box-shadow: var(--sidebar-box-shadow);
   transition: width 0.3s;
   overflow: hidden; 
-  
 }
 
 .sidebar-expanded {
-  width: 320px;
+  width: 25vh; /* Ajustez cette valeur si nécessaire */
+}
+
+.dashboard-content {
+  transition: width 0.3s;
+}
+
+.dashboard-content-expanded {
+  margin-left: 30vh; /* Match the expanded width of the sidebar */
 }
 
 .sidebar-collapsed .list-item-text {
@@ -55,49 +61,56 @@ body[data-theme='dark'] {
   --sidebar-bg-color: #031c30;
   --sidebar-text-color: #ffffff;
   --sidebar-box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
-
 }
 
 .App {
-text-align: center;
+  text-align: center;
 }
 
 .App-logo {
-height: 40vmin;
-pointer-events: none;
+  height: 40vmin;
+  pointer-events: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-}
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
 }
 
 .App-header {
-background-color: #282c34;
-min-height: 100vh;
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-font-size: calc(10px + 2vmin);
-color: white;
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
 }
 
 .App-link {
-color: #61dafb;
+  color: #61dafb;
 }
 
 @keyframes App-logo-spin {
-from {
-  transform: rotate(0deg);
-}
-to {
-  transform: rotate(360deg);
-}
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
+.table-container {
+  height: 90vh; 
+}
 .fullPageContainer {
   height: 80%;
   width: 100%;
+}
+/* Ajoutez cette règle pour gérer l'alignement du contenu principal à côté de la sidebar */
+.dashboard {
+  display: flex;
+  flex-direction: row;
 }

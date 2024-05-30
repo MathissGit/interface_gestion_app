@@ -1,15 +1,12 @@
 // src/components/Header.js
-import React, { useContext } from 'react';
-import { SearchContext } from '../contexts/SearchContext';
-import SearchBar from './SearchBar';
+import React from 'react';
 
 const Header = () => {
-    const { searchTerm, setSearchTerm } = useContext(SearchContext);
-
     return (
-    <header>
-        <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-    </header>
+        <header>
+            {/* Header content here */}
+            <h1></h1>
+        </header>
     );
 };
 

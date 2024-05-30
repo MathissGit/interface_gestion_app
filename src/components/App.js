@@ -1,7 +1,7 @@
 // src/components/App.js
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { CssBaseline, ThemeProvider, Toolbar, createTheme } from '@mui/material';
+import { CssBaseline, ThemeProvider, createTheme } from '@mui/material';
 import Sidebar from './Sidebar';
 import UserProfile from './UserProfile';
 import '../styles/App.css';
@@ -25,34 +25,39 @@ import Header from './Header';
 import CourseList from './CourseList';
 import CoachList from './CoachList';
 import PatientList from './PatientList';
-import ListUsers from './UsersList';
+import ListUsers from './UsersList'; 
 
 const App = () => {
     const [darkMode, setDarkMode] = useState(false);
+    const [sidebarExpanded, setSidebarExpanded] = useState(false);
 
     useEffect(() => {
-    document.body.setAttribute('data-theme', darkMode ? 'dark' : 'light');
+        document.body.setAttribute('data-theme', darkMode ? 'dark' : 'light');
     }, [darkMode]);
 
     const theme = createTheme({
-    palette: {
-        mode: darkMode ? 'dark' : 'light',
-    },
+        palette: {
+            mode: darkMode ? 'dark' : 'light',
+        },
     });
 
     const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
+        setDarkMode(!darkMode);
     };
 
-function createData(name, email, image) {
-    return { name, email, image};
+    const handleSidebarHoverChange = (isHovered) => {
+        setSidebarExpanded(isHovered);
+    };
+
+    function createData(name, email, image) {
+        return { name, email, image };
     }
-    
+
     const rows = [
-    createData('Benbaloulie Nahim', 'nahim@nahim.com','BN'),
-    createData('Roche Pierre', 'pierre@roche.com','RP'),
-    createData('Lefevre Paul', 'paul@lefevre.com','LP'),
-    createData('Blanc Thomas', 'thomas@blanc.com','BT'),
+        createData('Benbaloulie Nahim', 'nahim@nahim.com', 'BN'),
+        createData('Roche Pierre', 'pierre@roche.com', 'RP'),
+        createData('Lefevre Paul', 'paul@lefevre.com', 'LP'),
+        createData('Blanc Thomas', 'thomas@blanc.com', 'BT'),
     ];
 
     const backgroundColor = darkMode ? '#41403f' : '#c1c0bd';
@@ -69,18 +74,21 @@ function createData(name, email, image) {
         <ThemeProvider theme={theme}>
             <CssBaseline />
             <Router>
-                <div style={{ display: 'flex', backgroundColor }}>
-                    <Sidebar position="fixed" toggleDarkMode={toggleDarkMode} darkMode={darkMode} />
-                    <div style={{ flexGrow: 1 }}>
-                        <Header />
+                <div style={{ display: 'flex', backgroundColor }} className='dashboard'>
+                    <Sidebar 
+                        position="fixed" 
+                        toggleDarkMode={toggleDarkMode} 
+                        darkMode={darkMode} 
+                        onHoverChange={handleSidebarHoverChange} 
+                    />
+                    <div className={`dashboard-content ${sidebarExpanded ? 'dashboard-content-expanded' : ''}`}>
+                        <Header style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}/>
                         <div style={{ padding: '20px' }}>
-
                             <Routes>
                                 <Route path="/" element={
                                     <div>
                                         <Box sx={{ flexGrow: 1 }}>
                                             <Grid container spacing={2}>
-
                                                 <Grid item xs={4}>
                                                     <Item>
                                                         Utilisateurs
@@ -88,15 +96,13 @@ function createData(name, email, image) {
                                                         <p>+20%</p>
                                                     </Item>
                                                 </Grid>
-
                                                 <Grid item xs={4}>
                                                     <Item>
                                                         Cours actifs
                                                         <h2>5</h2>
-                                                        <p>10 innactifs</p>
+                                                        <p>10 inactifs</p>
                                                     </Item>
                                                 </Grid>
-                                                
                                                 <Grid item xs={4}>
                                                     <Item>
                                                         Rendez-vous à venir
@@ -104,7 +110,6 @@ function createData(name, email, image) {
                                                         <p>15 en attentes</p>
                                                     </Item>
                                                 </Grid>
-
                                                 <Grid item xs={8}>
                                                     <Item>
                                                         Fréquentation
@@ -123,51 +128,48 @@ function createData(name, email, image) {
                                                                 height={488}
                                                             />
                                                         </div>
-
                                                     </Item>
                                                 </Grid>
-
                                                 <Grid item xs={4}>
                                                     <Item>
                                                         <TableContainer component={Paper}>
                                                             <Table sx={{ maxWidth: 100 }} aria-label="simple table">
                                                                 <TableHead>
-                                                                <TableRow>
-                                                                    <TableCell>Coach</TableCell>
-                                                                    <TableCell align="right">Name</TableCell>
-                                                                    <TableCell align="right">Email</TableCell>
-                                                                    <TableCell align="right">Editer</TableCell>
-                                                                </TableRow>
+                                                                    <TableRow>
+                                                                        <TableCell>Coach</TableCell>
+                                                                        <TableCell align="right">Name</TableCell>
+                                                                        <TableCell align="right">Email</TableCell>
+                                                                        <TableCell align="right">Editer</TableCell>
+                                                                    </TableRow>
                                                                 </TableHead>
                                                                 <TableBody>
-                                                                {rows.map((row) => (
-                                                                    <TableRow
-                                                                    key={row.name}
-                                                                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                                                    >
-                                                                    <TableCell component="th" scope="row">
-                                                                        <Avatar>{row.image}</Avatar>
-                                                                    </TableCell>
-                                                                    <TableCell component="th" scope="row">
-                                                                        {row.name}
-                                                                    </TableCell>
-                                                                    <TableCell align="right">{row.email}</TableCell>
-                                                                    <TableCell align="right">
-                                                                        <IconButton aria-label="edit">
-                                                                            <EditIcon />
-                                                                        </IconButton>
-                                                                        <IconButton aria-label="delete">
-                                                                            <DeleteIcon />
-                                                                        </IconButton>
-                                                                    </TableCell>
-                                                                    </TableRow>
-                                                                ))}
+                                                                    {rows.map((row) => (
+                                                                        <TableRow
+                                                                            key={row.name}
+                                                                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                                                        >
+                                                                            <TableCell component="th" scope="row">
+                                                                                <Avatar>{row.image}</Avatar>
+                                                                            </TableCell>
+                                                                            <TableCell component="th" scope="row">
+                                                                                {row.name}
+                                                                            </TableCell>
+                                                                            <TableCell align="right">{row.email}</TableCell>
+                                                                            <TableCell align="right">
+                                                                                <IconButton aria-label="edit">
+                                                                                    <EditIcon />
+                                                                                </IconButton>
+                                                                                <IconButton aria-label="delete">
+                                                                                    <DeleteIcon />
+                                                                                </IconButton>
+                                                                            </TableCell>
+                                                                        </TableRow>
+                                                                    ))}
                                                                 </TableBody>
                                                             </Table>
-                                                            </TableContainer>
+                                                        </TableContainer>
                                                     </Item>
                                                 </Grid>
-
                                                 <Grid item xs={8}>
                                                     <Item>
                                                         Revenus générés
@@ -181,29 +183,24 @@ function createData(name, email, image) {
                                                         </div>
                                                     </Item>
                                                 </Grid>
-
                                                 <Grid item xs={4}>
                                                     <Item>
                                                         Nb cours
                                                         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-
                                                             <LineChart
                                                                 xAxis={[{ data: [1, 2, 3, 5, 8, 10] }]}
                                                                 series={[
                                                                     {
-                                                                    data: [2, 5.5, 2, 8.5, 1.5, 5],
+                                                                        data: [2, 5.5, 2, 8.5, 1.5, 5],
                                                                     },
                                                                 ]}
                                                                 height={300}
                                                                 margin={{ left: 30, right: 30, top: 30, bottom: 30 }}
                                                                 grid={{ vertical: true, horizontal: true }}
                                                             />
-
                                                         </div>
                                                     </Item>
                                                 </Grid>
-
-                                                
                                             </Grid>
                                         </Box>
                                     </div>
@@ -215,7 +212,7 @@ function createData(name, email, image) {
                                 <Route path="/patients" element={<PatientList />} />
                             </Routes>
                         </div>
-                        </div>
+                    </div>
                 </div>
             </Router>
         </ThemeProvider>

@@ -1,16 +1,10 @@
-import * as React from 'react';
+// src/components/ListUsers.js
+import React, { useContext, useState } from 'react';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TableFooter, TablePagination } from '@mui/material';
+import { SearchContext } from '../contexts/SearchContext';
 import PropTypes from 'prop-types';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import Table from '@mui/material/Table';
-import TableHead from '@mui/material/TableHead';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableFooter from '@mui/material/TableFooter';
-import TablePagination from '@mui/material/TablePagination';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
 import IconButton from '@mui/material/IconButton';
 import FirstPageIcon from '@mui/icons-material/FirstPage';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
@@ -21,72 +15,19 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import { users } from '../datas/users';
 import '../styles/App.css';
+import TablePaginationActions from './TablePaginationActions';
+import SearchBar from './SearchBar';
 
-function TablePaginationActions(props) {
-  const theme = useTheme();
-  const { count, page, rowsPerPage, onPageChange } = props;
+function UserList() {
+  const { searchTerm, setSearchTerm } = useContext(SearchContext);
+  const [page, setPage] = useState(0);
+  const [usersPerPage, setUsersPerPage] = useState(5);
 
-  const handleFirstPageButtonClick = (event) => {
-    onPageChange(event, 0);
-  };
-
-  const handleBackButtonClick = (event) => {
-    onPageChange(event, page - 1);
-  };
-
-  const handleNextButtonClick = (event) => {
-    onPageChange(event, page + 1);
-  };
-
-  const handleLastPageButtonClick = (event) => {
-    onPageChange(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
-  };
-
-  return (
-    <Box sx={{ flexShrink: 0, ml: 2.5 }}>
-      <IconButton
-        onClick={handleFirstPageButtonClick}
-        disabled={page === 0}
-        aria-label="first page"
-      >
-        {theme.direction === 'rtl' ? <LastPageIcon /> : <FirstPageIcon />}
-      </IconButton>
-      <IconButton
-        onClick={handleBackButtonClick}
-        disabled={page === 0}
-        aria-label="previous page"
-      >
-        {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
-      </IconButton>
-      <IconButton
-        onClick={handleNextButtonClick}
-        disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-        aria-label="next page"
-      >
-        {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
-      </IconButton>
-      <IconButton
-        onClick={handleLastPageButtonClick}
-        disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-        aria-label="last page"
-      >
-        {theme.direction === 'rtl' ? <FirstPageIcon /> : <LastPageIcon />}
-      </IconButton>
-    </Box>
+  const filteredUsers = users.filter(user =>
+    `${user.firstname} ${user.lastname}`.toLowerCase().includes(searchTerm.toLowerCase())
   );
-}
 
-TablePaginationActions.propTypes = {
-  count: PropTypes.number.isRequired,
-  page: PropTypes.number.isRequired,
-  rowsPerPage: PropTypes.number.isRequired,
-  onPageChange: PropTypes.func.isRequired,
-};
-
-function ListUsers() {
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
-
+  const emptyRows = page > 0 ? Math.max(0, (1 + page) * usersPerPage - filteredUsers.length) : 0;
   const rows = users.map((user) => ({
     id: user.id,
     name: `${user.firstname} ${user.lastname}`,
@@ -98,19 +39,18 @@ function ListUsers() {
     dateRegistration: user.dateRegistration,
   }));
 
-  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
+  // const handleChangePage = (event, newPage) => {
+  //   setPage(newPage);
+  // };
 
-  const handleChangePage = (event, newPage) => {
-    setPage(newPage);
-  };
-
-  const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(0);
-  };
+  // const handleChangeRowsPerPage = (event) => {
+  //   setRowsPerPage(parseInt(event.target.value, 10));
+  //   setPage(0);
+  // };
 
   return (
     <TableContainer component={Paper} className="fullPageContainer">
+      <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
       <Table stickyHeader aria-label="sticky table" sx={{ minWidth: 650 }}>
         <TableHead>
           <TableRow>
@@ -125,29 +65,26 @@ function ListUsers() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {(rowsPerPage > 0
-            ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-            : rows
-          ).map((row) => (
-            <TableRow key={row.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+          {filteredUsers.slice(page * usersPerPage, page * usersPerPage + usersPerPage).map((user) => (
+            <TableRow key={user.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
               <TableCell align="center" component="th" scope="row">
-                {row.id}
+                {user.id}
               </TableCell>
               <TableCell align="left">
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
                   <img
-                    src={row.avatar}
-                    alt={`${row.name} avatar`}
+                    src={user.avatar}
+                    alt={`${user.name} avatar`}
                     style={{ width: 50, height: 50, borderRadius: '50%', marginRight: 8 }}
                   />
-                  {row.name}
+                  {user.name}
                 </div>
               </TableCell>
-              <TableCell align="center">{row.datebirth}</TableCell>
-              <TableCell align="left">{row.email}</TableCell>
-              <TableCell align="center">{row.plan}</TableCell>
-              <TableCell align="center">{row.role}</TableCell>
-              <TableCell align="center">{row.dateRegistration}</TableCell>
+              <TableCell align="center">{user.datebirth}</TableCell>
+              <TableCell align="left">{user.email}</TableCell>
+              <TableCell align="center">{user.plan}</TableCell>
+              <TableCell align="center">{user.role}</TableCell>
+              <TableCell align="center">{user.dateRegistration}</TableCell>
               <TableCell align="center">
                 <IconButton aria-label="view">
                     <VisibilityIcon />
@@ -172,8 +109,8 @@ function ListUsers() {
             <TablePagination
               rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
               colSpan={7}
-              count={rows.length}
-              rowsPerPage={rowsPerPage}
+              count={filteredUsers.length}
+              rowsPerPage={usersPerPage}
               page={page}
               SelectProps={{
                 inputProps: {
@@ -181,8 +118,8 @@ function ListUsers() {
                 },
                 native: true,
               }}
-              onPageChange={handleChangePage}
-              onRowsPerPageChange={handleChangeRowsPerPage}
+              // onPageChange={handleChangePage}
+              // onRowsPerPageChange={handleChangeRowsPerPage}
               ActionsComponent={TablePaginationActions}
             />
           </TableRow>
@@ -192,4 +129,4 @@ function ListUsers() {
   );
 }
 
-export default ListUsers;
+export default UserList;
