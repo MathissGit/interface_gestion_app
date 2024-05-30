@@ -83,7 +83,7 @@ const App = () => {
                     />
                     <div className={`dashboard-content ${sidebarExpanded ? 'dashboard-content-expanded' : ''}`}>
                         <Header style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}/>
-                        <div style={{ padding: '20px', width: '175vh'}}>
+                        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', paddingLeft: '35vh', paddingBottom :'10vh', width: '175vh'}}>
                             <Routes>
                                 <Route path="/" element={
                                     <div>
@@ -110,7 +110,7 @@ const App = () => {
                                                         <p>15 en attentes</p>
                                                     </Item>
                                                 </Grid>
-                                                <Grid item xs={8}>
+                                                <Grid item xs={7}>
                                                     <Item>
                                                         Fréquentation
                                                         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
@@ -130,7 +130,7 @@ const App = () => {
                                                         </div>
                                                     </Item>
                                                 </Grid>
-                                                <Grid item xs={4}>
+                                                <Grid item xs={5}>
                                                     <Item>
                                                         <TableContainer component={Paper}>
                                                             <Table sx={{ maxWidth: 100 }} aria-label="simple table">
