@@ -97,6 +97,7 @@ to {
 }
 }
 
-.table-container {
-  height: 90vh; 
+.fullPageContainer {
+  height: 80%;
+  width: 100%;
 }
