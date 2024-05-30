@@ -6,7 +6,7 @@ function UserProfile() {
     return (
         <div>
             <HeaderProfile />
-            <div className="user-profile" style={{ marginTop: '20px' }}>
+            <div className="fullPageContainer" style={{ marginTop: '20px' }}>
                 <div>
                     <div style={{ marginBottom: '10px' }}>
                         <label>Email</label>

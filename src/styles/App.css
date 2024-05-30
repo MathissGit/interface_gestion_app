@@ -5,34 +5,13 @@ body {
   color: var(--text-color);
 }
 
-.sidebar {
-  width: 9vh; /* Ajustez cette valeur si nécessaire */
-  min-width: 60px; /* Ajout d'une largeur minimale */
+.sidebar { 
   height: 100vh;
   background-color: var(--sidebar-bg-color);
   color: var(--sidebar-text-color);
   display: flex;
   flex-direction: column;
   box-shadow: var(--sidebar-box-shadow);
-  transition: width 0.3s;
-  overflow: hidden; 
-  position: fixed;
-}
-
-.sidebar-expanded {
-  width: 25vh; /* Ajustez cette valeur si nécessaire */
-}
-
-.dashboard-content {
-  transition: width 0.3s;
-}
-
-.dashboard-content-expanded {
-  margin-left: 30vh; /* Match the expanded width of the sidebar */
-}
-
-.sidebar-collapsed .list-item-text {
-  display: none;
 }
 
 .sidebar-list {
@@ -44,6 +23,11 @@ body {
 .sidebar-bottom {
   margin-top: auto;
   padding-bottom: 20px;
+} 
+
+.sidebar-item:hover .MuiListItemIcon-root, 
+.sidebar-item:hover .MuiListItemText-primary {
+    color: #007bff;
 }
 
 /* Variables for light mode */
@@ -53,6 +37,9 @@ body {
   --sidebar-bg-color: #ffffff;
   --sidebar-text-color: #000000;
   --sidebar-box-shadow: 5px 0 5px rgba(0, 0, 0, 0.1);
+  --container-bg-color: #ffffff;
+  --container-text-color: #000000;
+  --container-box-shadow: 5px 0 5px rgba(0, 0, 0, 0.1);
 }
 
 /* Variables for dark mode */
@@ -62,6 +49,9 @@ body[data-theme='dark'] {
   --sidebar-bg-color: #031c30;
   --sidebar-text-color: #ffffff;
   --sidebar-box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+  --container-bg-color: #031c30;
+  --container-text-color: #ffffff;
+  --container-box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
 }
 
 .App {
@@ -106,6 +96,8 @@ body[data-theme='dark'] {
 .fullPageContainer {
   height: 80%;
   width: 100%;
+  background-color: var(--container-bg-color);
+  color: var(--container-text-color);
 }
 
 .dashboard {
@@ -120,3 +112,63 @@ body[data-theme='dark'] {
 .fullPageContainer h1 {
   padding: 10px;
 }
+
+
+
+
+
+
+
+.HeaderProfile {
+  background-color: #007bff;
+  color: #fff;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+}
+
+.HeaderProfile img {
+  border-radius: 50%;
+  width: 60px;
+  margin-right: 20px;
+}
+
+.HeaderProfile h1 {
+  margin: 0;
+}
+
+.HeaderProfile p {
+  margin: 0;
+}
+
+.user-profile {
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+  margin: 20px;
+}
+
+.user-profile form {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-profile form div {
+  margin-bottom: 20px;
+}
+
+.user-profile label {
+  font-weight: bold;
+}
+
+.user-profile input,
+.user-profile textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  resize: none;
+}
+
+
