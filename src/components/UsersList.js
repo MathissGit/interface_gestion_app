@@ -14,6 +14,9 @@ import { users } from '../datas/users';
 import '../styles/App.css';
 import TablePaginationActions from './TablePaginationActions';
 import SearchBar from './SearchBar';
+import Chip from '@mui/material/Chip';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
 
 function UserList() {
   const { searchTerm, setSearchTerm } = useContext(SearchContext);
@@ -36,77 +39,92 @@ function UserList() {
   };
 
   return (
-    <TableContainer component={Paper} className="fullPageContainer">
+    <div className="fullPageContainer">
       <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-      <Table>
-        <TableHead>
-          <TableRow>
-            <TableCell align="center">ID</TableCell>
-            <TableCell align="left">Name</TableCell>
-            <TableCell align="center">Date of Birth</TableCell>
-            <TableCell align="left">Email</TableCell>
-            <TableCell align="center">Plan</TableCell>
-            <TableCell align="center">Role</TableCell>
-            <TableCell align="center">Date Registration</TableCell>
-            <TableCell align="center">Action</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {filteredUsers.slice(page * usersPerPage, page * usersPerPage + usersPerPage).map((user) => (
-            <TableRow key={user.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-              <TableCell align="center" component="th" scope="row">
-                {user.id}
-              </TableCell>
-              <TableCell align="left">
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
-                  <img
-                    src={user.avatar}
-                    alt={`${user.name} avatar`}
-                    style={{ width: 50, height: 50, borderRadius: '50%', marginRight: 8 }}
-                  />
-                  {`${user.firstname} ${user.lastname}`}
-                </div>
-              </TableCell>
-              <TableCell align="center">{user.datebirth}</TableCell>
-              <TableCell align="left">{user.email}</TableCell>
-              <TableCell align="center">{user.plan}</TableCell>
-              <TableCell align="center">{user.role}</TableCell>
-              <TableCell align="center">{user.dateRegistration}</TableCell>
-              <TableCell align="center">
-                <IconButton aria-label="view">
-                    <VisibilityIcon />
-                </IconButton>
-                <IconButton aria-label="edit">
-                    <EditIcon />
-                </IconButton>
-                <IconButton aria-label="delete">
-                    <DeleteIcon />
-                </IconButton>
-              </TableCell>
+      <TableContainer component={Paper} >
+        <Stack className="header-list" justifyContent="space-between" direction="row" style={{alignItems: 'center'}} spacing={1}>
+
+          <Stack direction="row" style={{alignItems: 'center'}} spacing={1}>
+            <h1>Users</h1>
+            <Chip label={`${filteredUsers.length} Users`} />
+          </Stack>
+          <Stack direction="row" style={{alignItems: 'center'}} spacing={1}>
+            <Button color="success" variant="outlined">New User</Button>
+            <Button color="success" variant="outlined">New Coach</Button>
+            <Button color="success" variant="outlined">New Admin</Button>
+          </Stack>
+        </Stack>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell align="center">ID</TableCell>
+              <TableCell align="left">Name</TableCell>
+              <TableCell align="center">Date of Birth</TableCell>
+              <TableCell align="left">Email</TableCell>
+              <TableCell align="center">Plan</TableCell>
+              <TableCell align="center">Role</TableCell>
+              <TableCell align="center">Date Registration</TableCell>
+              <TableCell align="center">Action</TableCell>
             </TableRow>
-          ))}
-          {emptyRows > 0 && (
-            <TableRow style={{ height: 53 * emptyRows }}>
-              <TableCell colSpan={8} />
+          </TableHead>
+          <TableBody>
+            {filteredUsers.slice(page * usersPerPage, page * usersPerPage + usersPerPage).map((user) => (
+              <TableRow key={user.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                <TableCell align="center" component="th" scope="row">
+                  {user.id}
+                </TableCell>
+                <TableCell align="left">
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
+                    <img
+                      src={user.avatar}
+                      alt={`${user.name} avatar`}
+                      style={{ width: 50, height: 50, borderRadius: '50%', marginRight: 8 }}
+                    />
+                    {`${user.firstname} ${user.lastname}`}
+                  </div>
+                </TableCell>
+                <TableCell align="center">{user.datebirth}</TableCell>
+                <TableCell align="left">{user.email}</TableCell>
+                <TableCell align="center">{user.plan}</TableCell>
+                <TableCell align="center">{user.role}</TableCell>
+                <TableCell align="center">{user.dateRegistration}</TableCell>
+                <TableCell align="center">
+                  <IconButton aria-label="view">
+                      <VisibilityIcon />
+                  </IconButton>
+                  <IconButton aria-label="edit">
+                      <EditIcon />
+                  </IconButton>
+                  <IconButton aria-label="delete">
+                      <DeleteIcon />
+                  </IconButton>
+                </TableCell>
+              </TableRow>
+            ))}
+            {emptyRows > 0 && (
+              <TableRow style={{ height: 53 * emptyRows }}>
+                <TableCell colSpan={8} />
+              </TableRow>
+            )}
+          </TableBody>
+          <TableFooter>
+            <TableRow>
+              <TablePagination
+                rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
+                colSpan={8}
+                count={filteredUsers.length}
+                rowsPerPage={usersPerPage}
+                page={page}
+                onPageChange={handleChangePage}
+                onRowsPerPageChange={handleChangeRowsPerPage}
+                ActionsComponent={TablePaginationActions}
+              />
             </TableRow>
-          )}
-        </TableBody>
-        <TableFooter>
-          <TableRow>
-            <TablePagination
-              rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
-              colSpan={8}
-              count={filteredUsers.length}
-              rowsPerPage={usersPerPage}
-              page={page}
-              onPageChange={handleChangePage}
-              onRowsPerPageChange={handleChangeRowsPerPage}
-              ActionsComponent={TablePaginationActions}
-            />
-          </TableRow>
-        </TableFooter>
-      </Table>
-    </TableContainer>
+          </TableFooter>
+        </Table>
+      </TableContainer>
+    </div>
+
   );
 }
 

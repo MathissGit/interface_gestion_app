@@ -102,14 +102,21 @@ body[data-theme='dark'] {
     transform: rotate(360deg);
   }
 }
-/* 
+
 .fullPageContainer {
   height: 80%;
   width: 100%;
-  color: red;
-} */
-/* 
+}
+
 .dashboard {
   display: flex;
   flex-direction: row;
-} */
+}
+
+.header-list {
+  padding: 0 10px;
+}
+
+.fullPageContainer h1 {
+  padding: 10px;
+}
