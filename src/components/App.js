@@ -83,7 +83,7 @@ const App = () => {
                     />
                     <div className={`dashboard-content ${sidebarExpanded ? 'dashboard-content-expanded' : ''}`}>
                         <Header style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}/>
-                        <div style={{ padding: '20px' }}>
+                        <div style={{ padding: '20px', width: '175vh'}}>
                             <Routes>
                                 <Route path="/" element={
                                     <div>
