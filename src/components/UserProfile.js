@@ -1,12 +1,26 @@
 import React from 'react';
+import { Avatar } from '@mui/material';
 import { users } from '../datas/users'
-import HeaderProfile from './HeaderProfile';
+import FabriceEboue from '../assets/profil.jpg'
 
 function UserProfile() {
     return (
-        <div>
-            <HeaderProfile />
-            <div className="fullPageContainer" style={{ marginTop: '20px' }}>
+        <div className="fullPageContainer" style={{ alignItems: 'center' }}>
+            <div className='profil'>
+                <div className='display-picture'>
+                    <img className='avatarProfil' alt='Fabrice Ebouué' src={FabriceEboue}  />
+                    <div className='backAvatar'></div>
+                </div>
+                <div className='banner'>
+                </div>
+                <h1 className='display-name'>Fabrice Eboué</h1>
+                <p className='display-role'>Role: Patient</p>
+                
+            </div>
+            
+
+
+            <div className="middleContainer" style={{ marginTop: '20px' }}>
                 <div>
                     <div style={{ marginBottom: '10px' }}>
                         <label>Email</label>
