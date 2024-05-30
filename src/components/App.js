@@ -25,7 +25,7 @@ import Header from './Header';
 import CourseList from './CourseList';
 import CoachList from './CoachList';
 import PatientList from './PatientList';
-import ListUsers from './UsersList';
+import ListUsers from './UsersList'; 
 
 const App = () => {
     const [darkMode, setDarkMode] = useState(false);
