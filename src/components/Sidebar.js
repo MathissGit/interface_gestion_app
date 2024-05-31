@@ -37,11 +37,11 @@ const Sidebar = ({ toggleDarkMode, darkMode }) => {
                     </ListItemIcon>
                     <ListItemText primary='Dashboard' className="list-item-text" />
                 </ListItem>
-                <ListItem className={`sidebar-item ${location.pathname === '/post' ? 'active' : ''}`} button component={Link} to="/post">
+                <ListItem className={`sidebar-item ${location.pathname === '/plans' ? 'active' : ''}`} button component={Link} to="/plans">
                     <ListItemIcon>
                         <PostAddIcon />
                     </ListItemIcon>
-                    <ListItemText primary='Post' className="list-item-text" />
+                    <ListItemText primary='Plans' className="list-item-text" />
                 </ListItem>
                 <ListItem className={`sidebar-item ${location.pathname === '/cours' ? 'active' : ''}`} button component={Link} to="/cours">
                     <ListItemIcon>

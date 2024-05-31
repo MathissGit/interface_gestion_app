@@ -10,6 +10,7 @@ import CourseList from './CourseList';
 import CoachList from './CoachList';
 import PatientList from './PatientList';
 import ListUsers from './UsersList'; 
+import PlansList from './PlansList'; 
 import Dashboard from './Dashboard'; 
 
 const App = () => {
@@ -64,6 +65,7 @@ const App = () => {
                                 <Route path="/utilisateurs" element={<ListUsers />} />
                                 <Route path="/profile" element={<UserProfile />} />
                                 <Route path="/cours" element={<CourseList />} />
+                                <Route path="/plans" element={<PlansList />} />
                                 <Route path="/coaches" element={<CoachList />} />
                                 <Route path="/patients" element={<PatientList />} />
                             </Routes>
