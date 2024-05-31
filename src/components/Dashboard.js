@@ -5,7 +5,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { LineChart } from '@mui/x-charts/LineChart';
 import { BarChart } from '@mui/x-charts/BarChart';
 import { styled } from '@mui/material/styles';
-import { users } from '../datas/data';
+import { users, cours, plan } from '../datas/data';
 
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -17,6 +17,8 @@ const Item = styled(Paper)(({ theme }) => ({
 
 function Dashboard() {
     const coaches = users.filter(user => user.role === 'Coach');
+    const coursActifs = cours.filter(cours => cours.certification === "Active")
+    const coursInactifs = cours.filter(cours => cours.certification === "Inactive")
 
     return (
         <div>
@@ -32,8 +34,8 @@ function Dashboard() {
                     <Grid item xs={4}>
                         <Item>
                             Cours actifs
-                            <h2>5</h2>
-                            <p>10 inactifs</p>
+                            <h2>{coursActifs.length}</h2>
+                            <p>{coursInactifs.length} inactifs</p>
                         </Item>
                     </Grid>
                     <Grid item xs={4}>
