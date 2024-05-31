@@ -15,7 +15,8 @@ import Button from '@mui/material/Button';
 function UserList() {
   const { searchTerm, setSearchTerm } = useContext(SearchContext);
   const [page, setPage] = useState(0);
-  const [usersPerPage, setUsersPerPage] = useState(5);
+  const AllUsers = users.length
+  const [usersPerPage, setUsersPerPage] = useState(AllUsers);
 
   const filteredUsers = users.filter(user =>
     `${user.firstname} ${user.lastname}`.toLowerCase().includes(searchTerm.toLowerCase())
@@ -106,7 +107,7 @@ function UserList() {
           <TableFooter>
             <TableRow>
               <TablePagination
-                rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
+                rowsPerPageOptions={[5, 10, 25, { label: 'All', value: AllUsers }]}
                 colSpan={8}
                 count={filteredUsers.length}
                 rowsPerPage={usersPerPage}
