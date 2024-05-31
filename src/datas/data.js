@@ -24,7 +24,7 @@ export const plan = [
     } 
 ]
 
-export const course = [
+export const cours = [
     {
         id: '1',
         coachName: 'Nahim Benbahloulie',

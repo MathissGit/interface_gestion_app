@@ -1,12 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TableFooter, TablePagination, IconButton, Box } from '@mui/material';
 import { SearchContext } from '../contexts/SearchContext';
-import PropTypes from 'prop-types';
-import { useTheme } from '@mui/material/styles';
-import FirstPageIcon from '@mui/icons-material/FirstPage';
-import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
-import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
-import LastPageIcon from '@mui/icons-material/LastPage';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import VisibilityIcon from '@mui/icons-material/Visibility';
@@ -56,16 +50,16 @@ function UserList() {
         </Stack>
         <Table>
           <TableHead>
-            <TableRow>
-              <TableCell align="center">ID</TableCell>
-              <TableCell align="left">Name</TableCell>
-              <TableCell align="center">Date of Birth</TableCell>
-              <TableCell align="left">Email</TableCell>
-              <TableCell align="center">Certification</TableCell>
-              <TableCell align="center">Plan</TableCell>
-              <TableCell align="center">Role</TableCell>
-              <TableCell align="center">Date Registration</TableCell>
-              <TableCell align="center">Action</TableCell>
+            <TableRow >
+              <TableCell style={{fontWeight:"bold"}} align="center">ID</TableCell>
+              <TableCell style={{fontWeight:"bold"}} align="left">Name</TableCell>
+              <TableCell style={{fontWeight:"bold"}} align="center">Date of Birth</TableCell>
+              <TableCell style={{fontWeight:"bold"}} align="left">Email</TableCell>
+              <TableCell style={{fontWeight:"bold"}} align="center">Certification</TableCell>
+              <TableCell style={{fontWeight:"bold"}} align="center">Plan</TableCell>
+              <TableCell style={{fontWeight:"bold"}} align="center">Role</TableCell>
+              <TableCell style={{fontWeight:"bold"}} align="center">Date Registration</TableCell>
+              <TableCell style={{fontWeight:"bold"}} align="center">Action</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
