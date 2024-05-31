@@ -5,7 +5,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { LineChart } from '@mui/x-charts/LineChart';
 import { BarChart } from '@mui/x-charts/BarChart';
 import { styled } from '@mui/material/styles';
-import { users } from '../datas/users';
+import { users } from '../datas/data';
 
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',

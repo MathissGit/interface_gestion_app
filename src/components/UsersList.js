@@ -10,7 +10,7 @@ import LastPageIcon from '@mui/icons-material/LastPage';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import VisibilityIcon from '@mui/icons-material/Visibility';
-import { users } from '../datas/users';
+import { users } from '../datas/data';
 import '../styles/App.css';
 import TablePaginationActions from './TablePaginationActions';
 import SearchBar from './SearchBar';

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Avatar } from '@mui/material';
-import { users } from '../datas/users'
+import { users } from '../datas/data'
 import FabriceEboue from '../assets/profil.jpg'
 
 function UserProfile() {

@@ -1,4 +1,94 @@
-import FabriceEboue from '../assets/profil.jpg'
+import FabriceEboue from '../assets/profil.jpg';
+
+export const plan = [
+    {
+        id: '1',
+        name: 'P1',
+        description: 'description plan 1',
+        cost: '1000€',
+        duration: '1 months',
+    },
+    {
+        id: '2',
+        name: 'P2',
+        description: 'description plan 2',
+        cost: '2000€',
+        duration: '2 months',
+    },
+    {
+        id: '3',
+        name: 'P3',
+        description: 'description plan 3',
+        cost: '3000€',
+        duration: '3 months',
+    } 
+]
+
+export const course = [
+    {
+        id: '1',
+        coachName: 'Nahim Benbahloulie',
+        name: 'Introduction to Fitness',
+        description: 'A beginner course on basic fitness routines and principles.',
+        duration: '4 weeks',
+        cost: '50€',
+        certification: 'Active',
+    },
+    {
+        id: '2',
+        coachName: 'Nahim Benbahloulie',
+        name: 'Advanced Strength Training',
+        description: 'An advanced course focused on building muscle strength.',
+        duration: '8 weeks',
+        cost: '100€',
+        certification: 'Active',
+    },
+    {
+        id: '3',
+        coachName: 'Pierre Roche',
+        name: 'Yoga for Beginners',
+        description: 'An introductory course to yoga for beginners.',
+        duration: '6 weeks',
+        cost: '60€',
+        certification: 'Inactive',
+    },
+    {
+        id: '4',
+        coachName: 'Pierre Roche',
+        name: 'Mindfulness and Meditation',
+        description: 'Learn the basics of mindfulness and meditation techniques.',
+        duration: '4 weeks',
+        cost: '40€',
+        certification: 'Inactive',
+    },
+    {
+        id: '5',
+        coachName: 'Paul Lefevre',
+        name: 'Basic Nutrition',
+        description: 'Understanding the basics of nutrition and healthy eating.',
+        duration: '3 weeks',
+        cost: '30€',
+        certification: 'None',
+    },
+    {
+        id: '6',
+        coachName: 'Thomas Blanc',
+        name: 'Cardio Workouts',
+        description: 'Intensive cardio workouts to improve cardiovascular health.',
+        duration: '5 weeks',
+        cost: '70€',
+        certification: 'Active',
+    },
+    {
+        id: '7',
+        coachName: 'Thomas Blanc',
+        name: 'HIIT Training',
+        description: 'High-Intensity Interval Training for quick and effective results.',
+        duration: '6 weeks',
+        cost: '80€',
+        certification: 'Active',
+    }
+];
 
 export const users = [
     {
@@ -18,7 +108,7 @@ export const users = [
         firstname: 'Nahim',
         datebirth: '05/07/1800',
         email: 'nahim@nahim.com',
-        plan: '',
+        certification: 'Active',
         role: 'Coach',
         avatar: FabriceEboue,
         dateRegistration: '28/05/2024'
@@ -62,7 +152,6 @@ export const users = [
         firstname: 'admin',
         datebirth: '01/02/1990',
         email: 'admin@admin.com',
-        plan: '',
         role: 'admin',
         avatar: FabriceEboue,
         dateRegistration: '28/05/2024'
@@ -106,7 +195,7 @@ export const users = [
         firstname: 'Pierre',
         datebirth: '12/12/1960',
         email: 'pierre@roche.com',
-        plan: '',
+        certification: 'Inactive',
         role: 'Coach',
         avatar: FabriceEboue,
         dateRegistration: '28/05/2024'
@@ -150,7 +239,7 @@ export const users = [
         firstname: 'Paul',
         datebirth: '22/10/1982',
         email: 'paul@lefevre.com',
-        plan: '',
+        certification: 'None',
         role: 'Coach',
         avatar: FabriceEboue,
         dateRegistration: '28/05/2024'
@@ -194,7 +283,7 @@ export const users = [
         firstname: 'Thomas',
         datebirth: '17/09/1993',
         email: 'thomas@blanc.com',
-        plan: '',
+        certification: 'Active',
         role: 'Coach',
         avatar: FabriceEboue,
         dateRegistration: '28/05/2024'
@@ -219,6 +308,5 @@ export const users = [
         plan: 'P2',
         role: 'patient',
         avatar: FabriceEboue,
-        dateRegistration: '28/05/2024'
     }
-];
+]
