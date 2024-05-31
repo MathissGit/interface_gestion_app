@@ -114,15 +114,19 @@ body[data-theme='dark'] {
 }
 
 .middleContainer {
+  grid-row: 4 / 5;
+  grid-column: 1 / 2;
+  height: 100%;
   border: solid 1px #282c34;
   border-radius: 20px;
   padding: 2% 10%;
+  margin: 2em 2em 0 2em;
   background-color: #ffffff;
 }
 
 .profil {
   display: grid;
-  grid-template-rows: 5rem 6rem 6rem 1fr;
+  grid-template-rows: 5rem 6rem 6rem 1fr 1fr;
   grid-template-columns: 1fr;
   background-color: #ffffff;
   border-radius: 20px;
