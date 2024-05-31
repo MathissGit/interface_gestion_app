@@ -61,6 +61,7 @@ function UserList() {
               <TableCell align="left">Name</TableCell>
               <TableCell align="center">Date of Birth</TableCell>
               <TableCell align="left">Email</TableCell>
+              <TableCell align="center">Certification</TableCell>
               <TableCell align="center">Plan</TableCell>
               <TableCell align="center">Role</TableCell>
               <TableCell align="center">Date Registration</TableCell>
@@ -85,6 +86,7 @@ function UserList() {
                 </TableCell>
                 <TableCell align="center">{user.datebirth}</TableCell>
                 <TableCell align="left">{user.email}</TableCell>
+                <TableCell align="center">{user.certification}</TableCell>
                 <TableCell align="center">{user.plan}</TableCell>
                 <TableCell align="center">{user.role}</TableCell>
                 <TableCell align="center">{user.dateRegistration}</TableCell>
