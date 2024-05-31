@@ -42,6 +42,7 @@ body {
   --container-bg-color: #ffffff;
   --container-text-color: #000000;
   --container-box-shadow: 5px 0 5px rgba(0, 0, 0, 0.1);
+  --profil-border: #262b32; 
 }
 
 /* Variables for dark mode */
@@ -54,6 +55,8 @@ body[data-theme='dark'] {
   --container-bg-color: #031c30;
   --container-text-color: #ffffff;
   --container-box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+  --profil-bg-color: #262b32; 
+  --profil-border: #ffffff; 
 }
 
 .App {
@@ -98,7 +101,9 @@ body[data-theme='dark'] {
 .fullPageContainer {
   width: 100%;
   color: var(--container-text-color);
+  background-color: var(--container-bg-color);
 }
+
 
 .dashboard {
   display: flex;
@@ -117,18 +122,24 @@ body[data-theme='dark'] {
   grid-row: 4 / 5;
   grid-column: 1 / 2;
   height: 100%;
-  border: solid 1px #282c34;
+  border: solid 1px var(--profil-border);
   border-radius: 20px;
   padding: 2% 10%;
   margin: 2em 2em 0 2em;
-  background-color: #ffffff;
+  background-color: var(--profil-bg-color);
+}
+
+input, textarea {
+  background-color: var(--profil-bg-color);
+  border: solid 1px var(--profil-border);
+  color: var(--sidebar-text-color);
 }
 
 .profil {
   display: grid;
   grid-template-rows: 5rem 6rem 6rem 1fr 1fr;
   grid-template-columns: 1fr;
-  background-color: #ffffff;
+  background-color: var(--profil-bg-color);
   border-radius: 20px;
 }
 
@@ -172,7 +183,7 @@ body[data-theme='dark'] {
   top: 50%;
   left: 20%;
   transform: translate(-50%, -50%);
-  background-color: #ffffff;
+  background-color: var(--profil-bg-color);
   border-radius: 50%;
   margin-left: 0;
 }
