@@ -43,6 +43,7 @@ body {
   --container-text-color: #000000;
   --container-box-shadow: 5px 0 5px rgba(0, 0, 0, 0.1);
   --profil-border: #262b32; 
+  --profil-bg-color: #ffffff;
 }
 
 /* Variables for dark mode */
