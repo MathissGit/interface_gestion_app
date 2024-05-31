@@ -55,7 +55,7 @@ function Dashboard() {
                                         },
                                     ]}
                                     width={500}
-                                    height={300}
+                                    height={338}
                                 />
                             </div>
                         </Item>
