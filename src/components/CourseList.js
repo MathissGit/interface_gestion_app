@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TableFooter, TablePagination, IconButton, Stack, Button, Chip, TextField, MenuItem } from '@mui/material';
-import { Autocomplete, createFilterOptions } from '@mui/material';
+import { createFilterOptions } from '@mui/material';
 import { SearchContext } from '../contexts/SearchContext';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
