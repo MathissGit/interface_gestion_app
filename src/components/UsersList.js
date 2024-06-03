@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TableFooter, TablePagination, IconButton, Box } from '@mui/material';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TableFooter, TablePagination, IconButton, Stack, Button, Chip, TextField, MenuItem } from '@mui/material';
 import { SearchContext } from '../contexts/SearchContext';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -8,18 +8,19 @@ import { users } from '../datas/data';
 import '../styles/App.css';
 import TablePaginationActions from './TablePaginationActions';
 import SearchBar from './SearchBar';
-import Chip from '@mui/material/Chip';
-import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
 
-function UserList() {
+const UserList = () => {
   const { searchTerm, setSearchTerm } = useContext(SearchContext);
   const [page, setPage] = useState(0);
-  const AllUsers = users.length
-  const [usersPerPage, setUsersPerPage] = useState(AllUsers);
+  const [usersPerPage, setUsersPerPage] = useState(5);
+  const [roleFilter, setRoleFilter] = useState('');
+  const [certificationFilter, setCertificationFilter] = useState('');
 
   const filteredUsers = users.filter(user =>
-    `${user.firstname} ${user.lastname}`.toLowerCase().includes(searchTerm.toLowerCase())
+    (user.name && user.name.toLowerCase().includes(searchTerm.toLowerCase())) ||
+    (user.email && user.email.toLowerCase().includes(searchTerm.toLowerCase())) &&
+    (roleFilter === '' || user.role === roleFilter) &&
+    (certificationFilter === '' || (certificationFilter === 'Oui' && user.certification) || (certificationFilter === 'Non' && !user.certification))
   );
 
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * usersPerPage - filteredUsers.length) : 0;
@@ -35,32 +36,50 @@ function UserList() {
 
   return (
     <div className="fullPageContainer">
-      <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-      <TableContainer component={Paper} >
-        <Stack className="header-list" justifyContent="space-between" direction="row" style={{alignItems: 'center'}} spacing={1}>
-
-          <Stack direction="row" style={{alignItems: 'center'}} spacing={1}>
+      <Stack direction="row" spacing={2} alignItems="center">
+        <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+        <TextField
+          select
+          label="Role"
+          value={roleFilter}
+          onChange={(e) => setRoleFilter(e.target.value)}
+          style={{ width: 150 }}
+        >
+          <MenuItem value="">All</MenuItem>
+          <MenuItem value="coach">Coach</MenuItem>
+          <MenuItem value="patient">Patient</MenuItem>
+        </TextField>
+        <TextField
+          select
+          label="Certification"
+          value={certificationFilter}
+          onChange={(e) => setCertificationFilter(e.target.value)}
+          style={{ width: 150 }}
+        >
+          <MenuItem value="">All</MenuItem>
+          <MenuItem value="Oui">Yes</MenuItem>
+          <MenuItem value="Non">No</MenuItem>
+        </TextField>
+      </Stack>
+      <TableContainer component={Paper}>
+        <Stack className="header-list" justifyContent="space-between" direction="row" style={{ alignItems: 'center' }} spacing={1}>
+          <Stack direction="row" style={{ alignItems: 'center' }} spacing={1}>
             <h1>Users</h1>
-            <Chip label={`${filteredUsers.length} Users`} />
+            <Chip label={`${filteredUsers.length} users`} />
           </Stack>
-          <Stack direction="row" style={{alignItems: 'center'}} spacing={1}>
+          <Stack direction="row" style={{ alignItems: 'center' }} spacing={1}>
             <Button color="success" variant="outlined">New User</Button>
-            <Button color="success" variant="outlined">New Coach</Button>
-            <Button color="success" variant="outlined">New Admin</Button>
           </Stack>
         </Stack>
         <Table>
           <TableHead>
-            <TableRow >
-              <TableCell style={{fontWeight:"bold"}} align="center">ID</TableCell>
-              <TableCell style={{fontWeight:"bold"}} align="left">Name</TableCell>
-              <TableCell style={{fontWeight:"bold"}} align="center">Date of Birth</TableCell>
-              <TableCell style={{fontWeight:"bold"}} align="left">Email</TableCell>
-              <TableCell style={{fontWeight:"bold"}} align="center">Certification</TableCell>
-              <TableCell style={{fontWeight:"bold"}} align="center">Plan</TableCell>
-              <TableCell style={{fontWeight:"bold"}} align="center">Role</TableCell>
-              <TableCell style={{fontWeight:"bold"}} align="center">Date Registration</TableCell>
-              <TableCell style={{fontWeight:"bold"}} align="center">Action</TableCell>
+            <TableRow>
+              <TableCell style={{ fontWeight: "bold" }} align="center">ID</TableCell>
+              <TableCell style={{ fontWeight: "bold" }} align="left">Name</TableCell>
+              <TableCell style={{ fontWeight: "bold" }} align="left">Email</TableCell>
+              <TableCell style={{ fontWeight: "bold" }} align="center">Role</TableCell>
+              <TableCell style={{ fontWeight: "bold" }} align="center">Certification</TableCell>
+              <TableCell style={{ fontWeight: "bold" }} align="center">Action</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -69,31 +88,19 @@ function UserList() {
                 <TableCell align="center" component="th" scope="row">
                   {user.id}
                 </TableCell>
-                <TableCell align="left">
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
-                    <img
-                      src={user.avatar}
-                      alt={`${user.name} avatar`}
-                      style={{ width: 50, height: 50, borderRadius: '50%', marginRight: 8 }}
-                    />
-                    {`${user.firstname} ${user.lastname}`}
-                  </div>
-                </TableCell>
-                <TableCell align="center">{user.datebirth}</TableCell>
+                <TableCell align="left">{user.name}</TableCell>
                 <TableCell align="left">{user.email}</TableCell>
-                <TableCell align="center">{user.certification}</TableCell>
-                <TableCell align="center">{user.plan}</TableCell>
                 <TableCell align="center">{user.role}</TableCell>
-                <TableCell align="center">{user.dateRegistration}</TableCell>
+                <TableCell align="center">{user.certification ? 'Yes' : 'No'}</TableCell>
                 <TableCell align="center">
                   <IconButton aria-label="view">
-                      <VisibilityIcon />
+                    <VisibilityIcon />
                   </IconButton>
                   <IconButton aria-label="edit">
-                      <EditIcon />
+                    <EditIcon />
                   </IconButton>
                   <IconButton aria-label="delete">
-                      <DeleteIcon />
+                    <DeleteIcon />
                   </IconButton>
                 </TableCell>
               </TableRow>
@@ -107,7 +114,7 @@ function UserList() {
           <TableFooter>
             <TableRow>
               <TablePagination
-                rowsPerPageOptions={[5, 10, 25, { label: 'All', value: AllUsers }]}
+                rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
                 colSpan={8}
                 count={filteredUsers.length}
                 rowsPerPage={usersPerPage}
@@ -121,7 +128,6 @@ function UserList() {
         </Table>
       </TableContainer>
     </div>
-
   );
 }
 

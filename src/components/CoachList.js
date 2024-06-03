@@ -3,7 +3,7 @@ import { SearchContext } from '../contexts/SearchContext';
 import SearchBar from './SearchBar';
 
 const CoachList = () => {
-  const { searchTerm } = useContext(SearchContext);
+  const { searchTerm, setSearchTerm } = useContext(SearchContext); // Ajout de setSearchTerm
   const coaches = ['John Doe', 'Jane Smith', 'Mike Johnson', 'Anna Williams'];
 
   const filteredCoaches = coaches.filter(coach =>
@@ -12,7 +12,7 @@ const CoachList = () => {
 
   return (
     <div>
-      <SearchBar />
+      <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} /> {/* Modification ici */}
       <ul>
         {filteredCoaches.map((coach, index) => (
           <li key={index}>{coach}</li>

@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TableFooter, TablePagination, IconButton, Box } from '@mui/material';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TableFooter, TablePagination, IconButton, Stack, Button, Chip, TextField, MenuItem } from '@mui/material';
+import { Autocomplete, createFilterOptions } from '@mui/material';
 import { SearchContext } from '../contexts/SearchContext';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -8,78 +9,92 @@ import { plan } from '../datas/data';
 import '../styles/App.css';
 import TablePaginationActions from './TablePaginationActions';
 import SearchBar from './SearchBar';
-import Chip from '@mui/material/Chip';
-import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
 
-function PlansList() {
+const PlansList = () => {
   const { searchTerm, setSearchTerm } = useContext(SearchContext);
   const [page, setPage] = useState(0);
-  const [planPerPage, setplanPerPage] = useState(5);
+  const [plansPerPage, setPlansPerPage] = useState(5);
+  const [durationFilter, setDurationFilter] = useState('');
 
-  const filteredplan = plan.filter(plan =>
-    `${plan.firstname} ${plan.lastname}`.toLowerCase().includes(searchTerm.toLowerCase())
+  const filterOptions = createFilterOptions({
+    matchFrom: 'start',
+    stringify: (option) => option.intitule,
+  });
+
+  const filteredPlans = plan.filter(plan =>
+    plan.intitule.toLowerCase().includes(searchTerm.toLowerCase()) &&
+    (durationFilter === '' || plan.duration.toString() === durationFilter)
   );
 
-  const emptyRows = page > 0 ? Math.max(0, (1 + page) * planPerPage - filteredplan.length) : 0;
+  const emptyRows = page > 0 ? Math.max(0, (1 + page) * plansPerPage - filteredPlans.length) : 0;
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
 
   const handleChangeRowsPerPage = (event) => {
-    setplanPerPage(parseInt(event.target.value, 10));
+    setPlansPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
 
   return (
     <div className="fullPageContainer">
-      <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-      <TableContainer component={Paper} >
-        <Stack className="header-list" justifyContent="space-between" direction="row" style={{alignItems: 'center'}} spacing={1}>
-
-          <Stack direction="row" style={{alignItems: 'center'}} spacing={1}>
-            <h1>plan</h1>
-            <Chip label={`${filteredplan.length} plan`} />
+      <Stack direction="row" spacing={2} alignItems="center">
+        <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+        <TextField
+          select
+          label="Duration"
+          value={durationFilter}
+          onChange={(e) => setDurationFilter(e.target.value)}
+          style={{ width: 150 }}
+        >
+          <MenuItem value="">All</MenuItem>
+          {/* Add specific duration options */}
+          <MenuItem value="3">3 mois</MenuItem>
+          <MenuItem value="6">6 mois</MenuItem>
+          <MenuItem value="12">12 moiss</MenuItem>
+        </TextField>
+      </Stack>
+      <TableContainer component={Paper}>
+        <Stack className="header-list" justifyContent="space-between" direction="row" style={{ alignItems: 'center' }} spacing={1}>
+          <Stack direction="row" style={{ alignItems: 'center' }} spacing={1}>
+            <h1>Plans</h1>
+            <Chip label={`${filteredPlans.length} plans`} />
           </Stack>
-          <Stack direction="row" style={{alignItems: 'center'}} spacing={1}>
-            <Button color="success" variant="outlined">New plan</Button>
+          <Stack direction="row" style={{ alignItems: 'center' }} spacing={1}>
+            <Button color="success" variant="outlined">New Plan</Button>
           </Stack>
         </Stack>
         <Table>
           <TableHead>
-            <TableRow >
-              <TableCell style={{fontWeight:"bold"}} align="center">ID</TableCell>
-              <TableCell style={{fontWeight:"bold"}} align="left">Intitulé</TableCell>
-              <TableCell style={{fontWeight:"bold"}} align="left">Description</TableCell>
-              <TableCell style={{fontWeight:"bold"}} align="center">Cout</TableCell>
-              <TableCell style={{fontWeight:"bold"}} align="center">Durée</TableCell>
-              <TableCell style={{fontWeight:"bold"}} align="center">Action</TableCell>
+            <TableRow>
+              <TableCell style={{ fontWeight: "bold" }} align="center">ID</TableCell>
+              <TableCell style={{ fontWeight: "bold" }} align="left">Intitule</TableCell>
+              <TableCell style={{ fontWeight: "bold" }} align="center">Duration</TableCell>
+              <TableCell style={{ fontWeight: "bold" }} align="center">Action</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {filteredplan.slice(page * planPerPage, page * planPerPage + planPerPage).map((plan) => (
+            {filteredPlans.slice(page * plansPerPage, page * plansPerPage + plansPerPage).map((plan) => (
               <TableRow key={plan.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                 <TableCell align="center" component="th" scope="row">
                   {plan.id}
                 </TableCell>
                 <TableCell align="left">
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
-                    {plan.name}
+                    {plan.intitule}
                   </div>
                 </TableCell>
-                <TableCell align="left">{plan.description}</TableCell>
-                <TableCell align="center">{plan.cost}</TableCell>
                 <TableCell align="center">{plan.duration}</TableCell>
                 <TableCell align="center">
                   <IconButton aria-label="view">
-                      <VisibilityIcon />
+                    <VisibilityIcon />
                   </IconButton>
                   <IconButton aria-label="edit">
-                      <EditIcon />
+                    <EditIcon />
                   </IconButton>
                   <IconButton aria-label="delete">
-                      <DeleteIcon />
+                    <DeleteIcon />
                   </IconButton>
                 </TableCell>
               </TableRow>
@@ -95,8 +110,8 @@ function PlansList() {
               <TablePagination
                 rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
                 colSpan={8}
-                count={filteredplan.length}
-                rowsPerPage={planPerPage}
+                count={filteredPlans.length}
+                rowsPerPage={plansPerPage}
                 page={page}
                 onPageChange={handleChangePage}
                 onRowsPerPageChange={handleChangeRowsPerPage}
@@ -107,7 +122,6 @@ function PlansList() {
         </Table>
       </TableContainer>
     </div>
-
   );
 }
 

@@ -3,7 +3,7 @@ import { SearchContext } from '../contexts/SearchContext';
 import SearchBar from './SearchBar';
 
 const PatientList = () => {
-  const { searchTerm } = useContext(SearchContext);
+  const { searchTerm, setSearchTerm } = useContext(SearchContext); // Ajout de setSearchTerm
   const patients = ['Alice Brown', 'Bob White', 'Charlie Green', 'Diana Black'];
 
   const filteredPatients = patients.filter(patient =>
@@ -12,7 +12,7 @@ const PatientList = () => {
 
   return (
     <div>
-      <SearchBar />
+      <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} /> {/* Modification ici */}
       <ul>
         {filteredPatients.map((patient, index) => (
           <li key={index}>{patient}</li>
