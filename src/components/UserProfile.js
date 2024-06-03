@@ -4,7 +4,7 @@ import FabriceEboue from '../assets/profil.jpg';
 
 function UserProfile() {
     const [user, setUser] = useState(null);
-    const userId = 1; // exemple avec un id definie mais doit etre celui du compte avec lequel on est connecté
+    const userId = 13; // exemple avec un id definie mais doit etre celui du compte avec lequel on est connecté
 
     useEffect(() => {
         axios.get(`http://localhost:3001/user/${userId}`)
@@ -33,14 +33,6 @@ function UserProfile() {
                                 <div style={{ marginBottom: '10px' }}>
                                     <label>Email</label>
                                     <input type="email" value={user.email} readOnly style={{ width: '100%', padding: '8px' }} />
-                                </div>
-                                <div style={{ marginBottom: '10px' }}>
-                                    <label>Description</label>
-                                    <textarea
-                                        value={user.description}
-                                        readOnly
-                                        style={{ width: '100%', padding: '8px' }}
-                                    />
                                 </div>
                                 <div style={{ marginBottom: '10px' }}>
                                     <label>Date of birth</label>

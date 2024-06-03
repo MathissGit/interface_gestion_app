@@ -18,50 +18,29 @@ const db = new sqlite3.Database('./database/database.db', (err) => {
   }
 });
 
-// USERS PATHS
-const readAllUsers = require('./CRUD/users/readAll');
-const readUser = require('./CRUD/users/read');
-const delUser = require('./CRUD/users/delete');
-const upsertUser = require('./CRUD/users/upsert');
+// APP_USERS PATHS
+const readAllAdmins = require('./CRUD/app_user/readAllAdmins');
+const readAllCoachs = require('./CRUD/app_user/readAllCoachs');
+const readAllPatients = require('./CRUD/app_user/readAllPatients');
+const readAllAppUsers = require('./CRUD/app_user/readAllUsers');
+const readUser = require('./CRUD/app_user/read');
+const delUser = require('./CRUD/app_user/delete');
+const upsertUser = require('./CRUD/app_user/upsert');
 
-// PLANS PATHS
-const readAllPlans = require('./CRUD/plans/readAll');
-const readPlan = require('./CRUD/plans/read');
-const delPlan = require('./CRUD/plans/delete');
-const upsertPlan = require('./CRUD/plans/upsert');
-
-// COURS PATHS
-const readAllCours = require('./CRUD/cours/readAll');
-const readCours = require('./CRUD/cours/read');
-const delCours = require('./CRUD/cours/delete');
-const upsertCours = require('./CRUD/cours/upsert');
-
-// USER ROUTES
+// APP_USER ROUTES
 router.route('/user/:userId')
     .get(readUser(db))
     .delete(delUser(db));
 router.route('/user')
     .put(upsertUser(db));
 router.route('/users')
-    .get(readAllUsers(db));
-
-// // PLANS ROUTES
-// router.route('/user/:userId')
-//     .get(readPlan(db))
-//     .delete(delPlan(db));
-// router.route('/user')
-//     .put(upsertPlan(db));
-// router.route('/users')
-//     .get(readAllPlans(db));
-
-// // COURS ROUTES
-// router.route('/cours/:coursId')
-//     .get(readCours(db))
-//     .delete(delCours(db));
-// router.route('/cours')
-//     .put(upsertCours(db));
-// router.route('/cours')
-//     .get(readAllCours(db));
+    .get(readAllAppUsers(db));
+router.route('/admins')
+    .get(readAllAdmins(db));
+router.route('/coachs')
+    .get(readAllCoachs(db));
+router.route('/patients')
+    .get(readAllPatients(db));
 
 app.use(router);
 
