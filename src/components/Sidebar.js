@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { List, ListItem, ListItemIcon, ListItemText, Switch, FormControlLabel } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
 import PostAddIcon from '@mui/icons-material/PostAdd';

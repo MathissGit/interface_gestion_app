@@ -1,47 +1,60 @@
-import React from 'react';
-import { Avatar } from '@mui/material';
-import { users } from '../datas/data'
-import FabriceEboue from '../assets/profil.jpg'
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import FabriceEboue from '../assets/profil.jpg';
 
 function UserProfile() {
+    const [user, setUser] = useState(null);
+    const userId = 1; // exemple avec un id definie mais doit etre celui du compte avec lequel on est connecté
+
+    useEffect(() => {
+        axios.get(`http://localhost:3001/user/${userId}`)
+            .then(response => {
+                setUser(response.data); 
+            })
+            .catch(error => {
+                console.error('Il y a eu une erreur!', error);
+            });
+    }, []);
+
     return (
         <div className="fullPageContainer" style={{ alignItems: 'center' }}>
             <div className='profil'>
                 <div className='display-picture'>
-                    <img className='avatarProfil' alt='Fabrice Ebouué' src={FabriceEboue}  />
+                    <img className='avatarProfil' alt='Fabrice Eboué' src={FabriceEboue} />
                     <div className='backAvatar'></div>
                 </div>
-                <div className='banner'>
-                </div>
-                <h1 className='display-name'>Fabrice Eboué</h1>
-                <p className='display-role'>Role: Patient</p>
-                <div className="middleContainer" style={{ marginTop: '20px' }}>
-                    <div>
-                        <div style={{ marginBottom: '10px' }}>
-                            <label>Email</label>
-                            <input type="email" value="Theobald@truc.com" readOnly style={{ width: '100%', padding: '8px' }} />
+                <div className='banner'></div>
+                {user ? (
+                    <>
+                        <h1 className='display-name'>{user.firstname} {user.lastname}</h1>
+                        <p className='display-role'>Role: {user.role}</p>
+                        <div className="middleContainer" style={{ marginTop: '20px' }}>
+                            <div>
+                                <div style={{ marginBottom: '10px' }}>
+                                    <label>Email</label>
+                                    <input type="email" value={user.email} readOnly style={{ width: '100%', padding: '8px' }} />
+                                </div>
+                                <div style={{ marginBottom: '10px' }}>
+                                    <label>Description</label>
+                                    <textarea
+                                        value={user.description}
+                                        readOnly
+                                        style={{ width: '100%', padding: '8px' }}
+                                    />
+                                </div>
+                                <div style={{ marginBottom: '10px' }}>
+                                    <label>Date of birth</label>
+                                    <input type="text" value={user.datebirth} readOnly style={{ width: '100%', padding: '8px' }} />
+                                </div>
+                            </div>
                         </div>
-                        <div style={{ marginBottom: '10px' }}>
-                            <label>Description</label>
-                            <textarea
-                                value="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-                                readOnly
-                                style={{ width: '100%', padding: '8px' }}
-                            />
-                        </div>
-                        <div style={{ marginBottom: '10px' }}>
-                            <label>Date of birth</label>
-                            <input type="text" value="01/03/1980" readOnly style={{ width: '100%', padding: '8px' }} />
-                        </div>
-                    </div>
-                </div>
+                    </>
+                ) : (
+                    <p>Pas de donnés. NE DOIT PAS ETRE VUE</p>
+                )}
             </div>
-            
-
-
-            
         </div>
     );
-};
+}
 
 export default UserProfile;
