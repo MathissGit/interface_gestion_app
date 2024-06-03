@@ -19,9 +19,10 @@ const UserList = () => {
   const filteredUsers = users.filter(user =>
     (user.name && user.name.toLowerCase().includes(searchTerm.toLowerCase())) ||
     (user.email && user.email.toLowerCase().includes(searchTerm.toLowerCase())) &&
-    (roleFilter === '' || user.role === roleFilter) &&
+    (roleFilter === '' || user.role.toLowerCase() === roleFilter.toLowerCase()) &&
     (certificationFilter === '' || (certificationFilter === 'Oui' && user.certification) || (certificationFilter === 'Non' && !user.certification))
   );
+  
 
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * usersPerPage - filteredUsers.length) : 0;
 
@@ -48,6 +49,7 @@ const UserList = () => {
           <MenuItem value="">All</MenuItem>
           <MenuItem value="coach">Coach</MenuItem>
           <MenuItem value="patient">Patient</MenuItem>
+
         </TextField>
         <TextField
           select

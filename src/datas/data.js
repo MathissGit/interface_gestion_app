@@ -30,8 +30,8 @@ export const cours = [
         coachName: 'Nahim Benbahloulie',
         name: 'Introduction to Fitness',
         description: 'A beginner course on basic fitness routines and principles.',
-        duration: '4 weeks',
-        cost: '50€',
+        duration: 4,//mois
+        cost: 50,//euros 
         certification: 'Active',
     },
     {
@@ -39,8 +39,8 @@ export const cours = [
         coachName: 'Nahim Benbahloulie',
         name: 'Advanced Strength Training',
         description: 'An advanced course focused on building muscle strength.',
-        duration: '8 weeks',
-        cost: '100€',
+        duration: 1,
+        cost: 100,
         certification: 'Active',
     },
     {
@@ -48,8 +48,8 @@ export const cours = [
         coachName: 'Pierre Roche',
         name: 'Yoga for Beginners',
         description: 'An introductory course to yoga for beginners.',
-        duration: '6 weeks',
-        cost: '60€',
+        duration: 6,
+        cost: 60,
         certification: 'Inactive',
     },
     {
@@ -57,8 +57,8 @@ export const cours = [
         coachName: 'Pierre Roche',
         name: 'Mindfulness and Meditation',
         description: 'Learn the basics of mindfulness and meditation techniques.',
-        duration: '4 weeks',
-        cost: '40€',
+        duration: 4,
+        cost: 40,
         certification: 'Inactive',
     },
     {
@@ -66,8 +66,8 @@ export const cours = [
         coachName: 'Paul Lefevre',
         name: 'Basic Nutrition',
         description: 'Understanding the basics of nutrition and healthy eating.',
-        duration: '3 weeks',
-        cost: '30€',
+        duration: 3,
+        cost: 30,
         certification: 'None',
     },
     {
@@ -75,8 +75,8 @@ export const cours = [
         coachName: 'Thomas Blanc',
         name: 'Cardio Workouts',
         description: 'Intensive cardio workouts to improve cardiovascular health.',
-        duration: '5 weeks',
-        cost: '70€',
+        duration: 5,
+        cost: 70,
         certification: 'Active',
     },
     {
@@ -84,8 +84,8 @@ export const cours = [
         coachName: 'Thomas Blanc',
         name: 'HIIT Training',
         description: 'High-Intensity Interval Training for quick and effective results.',
-        duration: '6 weeks',
-        cost: '80€',
+        duration: 6,
+        cost: 80,
         certification: 'Active',
     }
 ];

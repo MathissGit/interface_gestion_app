@@ -25,13 +25,13 @@ const CoursList = () => {
   });
 
   const filteredCours = cours.filter(cours =>
-    (cours.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-     cours.coachName.toLowerCase().includes(searchTerm.toLowerCase())) &&
-    (durationFilter === '' || cours.duration.toString() === durationFilter) &&
+    (cours.name.toLowerCase().includes(searchTerm.toLowerCase()) || cours.coachName.toLowerCase().includes(searchTerm.toLowerCase())) &&
+    (durationFilter === '' || cours.duration === parseInt(durationFilter)) &&
     (coachFilter === '' || cours.coachName.toLowerCase().includes(coachFilter.toLowerCase())) &&
-    (costFilter === '' || cours.cost.toString() === costFilter) &&
-    (certificationFilter === '' || (certificationFilter === 'Oui' && cours.certification) || (certificationFilter === 'Non' && !cours.certification))
-  );
+    (costFilter === '' || cours.cost === parseInt(costFilter)) && // Comparaison en nombre
+    (certificationFilter === '' || (certificationFilter === 'Oui' && cours.certification === 'Active') || (certificationFilter === 'Non' && cours.certification !== 'Active'))
+);
+
 
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * coursPerPage - filteredCours.length) : 0;
 
@@ -122,9 +122,9 @@ const CoursList = () => {
                 </TableCell>
                 <TableCell align="left">{cours.name}</TableCell>
                 <TableCell align="left">{cours.description}</TableCell>
-                <TableCell align="center">{cours.duration}</TableCell>
-                <TableCell align="center">{cours.cost}</TableCell>
-                <TableCell align="center">{cours.certification ? 'Yes' : 'No'}</TableCell>
+                <TableCell align="center">{`${cours.duration}  mois`}</TableCell>
+                <TableCell align="center">{`${cours.cost}€`}</TableCell>
+                <TableCell align="center">{cours.certification === 'Active' ? 'Oui' : 'Non'}</TableCell>
                 <TableCell align="center">
                   <IconButton aria-label="view">
                     <VisibilityIcon />
