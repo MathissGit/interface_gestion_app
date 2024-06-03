@@ -22,10 +22,10 @@ const PlansList = () => {
   });
 
   const filteredPlans = plan.filter(plan =>
-    plan.intitule.toLowerCase().includes(searchTerm.toLowerCase()) &&
+    (plan.intitule && plan.intitule.toLowerCase().includes(searchTerm.toLowerCase())) &&
     (durationFilter === '' || plan.duration.toString() === durationFilter)
   );
-
+  
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * plansPerPage - filteredPlans.length) : 0;
 
   const handleChangePage = (event, newPage) => {
@@ -50,9 +50,9 @@ const PlansList = () => {
         >
           <MenuItem value="">All</MenuItem>
           {/* Add specific duration options */}
-          <MenuItem value="3">3 mois</MenuItem>
-          <MenuItem value="6">6 mois</MenuItem>
-          <MenuItem value="12">12 moiss</MenuItem>
+          <MenuItem value="30">3 mois</MenuItem>
+          <MenuItem value="60">6 mois</MenuItem>
+          <MenuItem value="90">12 moiss</MenuItem>
         </TextField>
       </Stack>
       <TableContainer component={Paper}>
