@@ -1,6 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TableFooter, TablePagination, IconButton, Stack, Button, Chip, TextField, MenuItem } from '@mui/material';
-import { createFilterOptions } from '@mui/material';
 import { SearchContext } from '../contexts/SearchContext';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -15,7 +14,6 @@ const CoursList = () => {
   const [page, setPage] = useState(0);
   const [coursPerPage, setCoursPerPage] = useState(5);
   const [durationFilter, setDurationFilter] = useState('');
-  const [coachFilter, setCoachFilter] = useState('');
   const [costFilter, setCostFilter] = useState('');
   const [certificationFilter, setCertificationFilter] = useState('');
   const [cours, setAllCours] = useState([]);
@@ -30,11 +28,6 @@ const CoursList = () => {
       });
   }, []);
 
-  const filterOptions = createFilterOptions({
-    matchFrom: 'start',
-    stringify: (option) => option.name,
-  });
-
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -45,9 +38,8 @@ const CoursList = () => {
   };
 
   const filteredCours = cours.filter(cours =>
-    (!searchTerm || cours.name.toLowerCase().includes(searchTerm.toLowerCase()) || cours.coachName.toLowerCase().includes(searchTerm.toLowerCase())) &&
+    (!searchTerm || cours.name.toLowerCase().includes(searchTerm.toLowerCase())) &&
     (!durationFilter || cours.duration === parseInt(durationFilter)) &&
-    (!coachFilter || cours.coachName.toLowerCase().includes(coachFilter.toLowerCase())) &&
     (!costFilter || cours.cost === parseInt(costFilter)) && 
     (!certificationFilter || (certificationFilter === 'Oui' && cours.certification === 'Active') || (certificationFilter === 'Non' && cours.certification !== 'Active'))
   );
@@ -118,8 +110,8 @@ const CoursList = () => {
           </TableHead>
           <TableBody>
             {filteredCours.slice(page * coursPerPage, page * coursPerPage + coursPerPage).map((cours) => (
-              <TableRow key={cours.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                <TableCell align="center">{cours.id}</TableCell>
+              <TableRow key={cours.Id_Course} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                <TableCell align="center">{cours.Id_Course}</TableCell>
                 <TableCell align="left">{cours.name}</TableCell>
                 <TableCell align="left">{cours.description}</TableCell>
                 <TableCell align="center">{`${cours.duration} mois`}</TableCell>

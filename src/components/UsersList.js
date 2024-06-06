@@ -8,6 +8,7 @@ import '../styles/App.css';
 import TablePaginationActions from './TablePaginationActions';
 import SearchBar from './SearchBar';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const UserList = () => {
   const { searchTerm, setSearchTerm } = useContext(SearchContext);
@@ -16,6 +17,8 @@ const UserList = () => {
   const [roleFilter, setRoleFilter] = useState('');
   const [certificationFilter, setCertificationFilter] = useState('');
   const [users, setAllUsers] = useState([]);
+
+  const navigate = useNavigate(); // Initialize useNavigate
 
   useEffect(() => {
     axios.get(`http://localhost:3001/users`)
@@ -47,6 +50,10 @@ const UserList = () => {
   const handleChangeRowsPerPage = (event) => {
     setUsersPerPage(parseInt(event.target.value, 10));
     setPage(0);
+  };
+
+  const handleViewUser = (userId) => {
+    navigate(`/user/${userId}`);
   };
 
   return (
@@ -99,16 +106,16 @@ const UserList = () => {
           </TableHead>
           <TableBody>
             {filteredUsers.slice(page * usersPerPage, page * usersPerPage + usersPerPage).map((user) => (
-              <TableRow key={user.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+              <TableRow key={user.Id_User} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                 <TableCell align="center" component="th" scope="row">
-                  {user.id}
+                  {user.Id_User}
                 </TableCell>
-                <TableCell align="left">{user.name}</TableCell>
+                <TableCell align="left">{user.lastname}</TableCell>
                 <TableCell align="left">{user.email}</TableCell>
                 <TableCell align="center">{user.role}</TableCell>
                 <TableCell align="center">{user.certification ? 'Yes' : 'No'}</TableCell>
                 <TableCell align="center">
-                  <IconButton aria-label="view">
+                  <IconButton aria-label="view" onClick={ () => handleViewUser(user.Id_User)}>
                     <VisibilityIcon />
                   </IconButton>
                   <IconButton aria-label="edit">

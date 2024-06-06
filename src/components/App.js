@@ -7,15 +7,13 @@ import '../styles/App.css';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
 import CoursList from './CoursList';
-import CoachList from './CoachList';
-import PatientList from './PatientList';
 import ListUsers from './UsersList'; 
 import PlansList from './PlansList'; 
 import Dashboard from './Dashboard'; 
+import UserDetails from './UserDetails';
 
 const App = () => {
     const [darkMode, setDarkMode] = useState(false);
-    const [sidebarExpanded, setSidebarExpanded] = useState(false);
 
     useEffect(() => {
         document.body.setAttribute('data-theme', darkMode ? 'dark' : 'light');
@@ -30,11 +28,6 @@ const App = () => {
     const toggleDarkMode = () => {
         setDarkMode(!darkMode);
     };
-
-    const handleSidebarHoverChange = (isHovered) => {
-        setSidebarExpanded(isHovered);
-    };
-
 
     const backgroundColor = darkMode ? '#41403f' : '#c1c0bd';
 
@@ -62,12 +55,11 @@ const App = () => {
                         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '2vh'}}>
                             <Routes>
                                 <Route path="/" element={<Dashboard />} />
-                                <Route path="/utilisateurs" element={<ListUsers />} />
+                                <Route path="/users" element={<ListUsers />} />
                                 <Route path="/profile" element={<UserProfile />} />
-                                <Route path="/cours" element={<CoursList />} />
                                 <Route path="/plans" element={<PlansList />} />
-                                <Route path="/coaches" element={<CoachList />} />
-                                <Route path="/patients" element={<PatientList />} />
+                                <Route path="/course" element={<CoursList />} />
+                                <Route path="/user/:userId" element={<UserDetails />} />
                             </Routes>
                         </div>
                     </div>

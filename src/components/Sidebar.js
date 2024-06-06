@@ -43,18 +43,18 @@ const Sidebar = ({ toggleDarkMode, darkMode }) => {
                     </ListItemIcon>
                     <ListItemText primary='Plans' className="list-item-text" />
                 </ListItem>
-                <ListItem className={`sidebar-item ${location.pathname === '/cours' ? 'active' : ''}`} button component={Link} to="/cours">
+                <ListItem className={`sidebar-item ${location.pathname === '/course' ? 'active' : ''}`} button component={Link} to="/course">
                     <ListItemIcon>
                         <SchoolIcon />
                     </ListItemIcon>
-                    <ListItemText primary='Cours' className="list-item-text" />
+                    <ListItemText primary='Course' className="list-item-text" />
                 </ListItem>
-                <ListItem className={`sidebar-item ${location.pathname === '/messages' ? 'active' : ''}`} button component={Link} to="/messages">
+                {/* <ListItem className={`sidebar-item ${location.pathname === '/messages' ? 'active' : ''}`} button component={Link} to="/messages">
                     <ListItemIcon>
                         <MessageIcon />
                     </ListItemIcon>
                     <ListItemText primary='Messages' className="list-item-text" />
-                </ListItem>
+                </ListItem> */}
                 <ListItem className={`sidebar-item ${location.pathname === '/rendez-vous' ? 'active' : ''}`} button component={Link} to="/rendez-vous">
                     <ListItemIcon>
                         <CalendarTodayIcon />
@@ -67,13 +67,13 @@ const Sidebar = ({ toggleDarkMode, darkMode }) => {
                     </ListItemIcon>
                     <ListItemText primary='Transaction' className="list-item-text" />
                 </ListItem>
-                <ListItem className={`sidebar-item ${location.pathname === '/utilisateurs' ? 'active' : ''}`} button component={Link} to="/utilisateurs">
+                <ListItem className={`sidebar-item ${location.pathname === '/users' ? 'active' : ''}`} button component={Link} to="/users">
                     <ListItemIcon>
                         <GroupIcon />
                     </ListItemIcon>
-                    <ListItemText primary='Utilisateurs' className="list-item-text" />
+                    <ListItemText primary='Users' className="list-item-text" />
                 </ListItem>
-                <ListItem className={`sidebar-item ${location.pathname === '/parametres' ? 'active' : ''}`} button component={Link} to="/parametres">
+                {/* <ListItem className={`sidebar-item ${location.pathname === '/parametres' ? 'active' : ''}`} button component={Link} to="/parametres">
                     <ListItemIcon>
                         <SettingsIcon />
                     </ListItemIcon>
@@ -84,7 +84,7 @@ const Sidebar = ({ toggleDarkMode, darkMode }) => {
                         <BuildIcon />
                     </ListItemIcon>
                     <ListItemText primary='Outils' className="list-item-text" />
-                </ListItem>
+                </ListItem> */}
                 <div className="sidebar-bottom">
                     <ListItem className="sidebar-item" >
                         <ListItemIcon>
