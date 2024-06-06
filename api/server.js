@@ -42,8 +42,7 @@ const upsertPlans = require('./CRUD/plans/upsert');
 // APP_USER ROUTES
 router.route('/user/:userId')
     .get(readUser(db))
-    .delete(delUser(db));
-router.route('/user')
+    .delete(delUser(db))
     .put(upsertUser(db));
 router.route('/users')
     .get(readAllAppUsers(db));
@@ -57,8 +56,7 @@ router.route('/patients')
 // COURS ROUTES
 router.route('/cour/:userId')
     .get(readCours(db))
-    .delete(delCours(db));
-router.route('/cour')
+    .delete(delCours(db))
     .put(upsertCours(db));
 router.route('/cours')
     .get(readAllCours(db));
@@ -66,8 +64,7 @@ router.route('/cours')
 // PLANS ROUTES
 router.route('/plan/:userId')
     .get(readPlans(db))
-    .delete(delPlans(db));
-router.route('/plan')
+    .delete(delPlans(db))
     .put(upsertPlans(db));
 router.route('/plans')
     .get(readAllPlans(db));

@@ -18,7 +18,7 @@ const UserList = () => {
   const [certificationFilter, setCertificationFilter] = useState('');
   const [users, setAllUsers] = useState([]);
 
-  const navigate = useNavigate(); // Initialize useNavigate
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios.get(`http://localhost:3001/users`)
@@ -53,7 +53,15 @@ const UserList = () => {
   };
 
   const handleViewUser = (userId) => {
-    navigate(`/user/${userId}`);
+    navigate(`/user/${userId}`, { state: { action: 'view' } });
+  };
+
+  const handleEditUser = (userId) => {
+    navigate(`/user/${userId}`, { state: { action: 'edit' } });
+  };
+
+  const handleDeleteUser = (userId) => {
+    navigate(`/user/${userId}`, { state: { action: 'delete' } });
   };
 
   return (
@@ -110,7 +118,7 @@ const UserList = () => {
                 <TableCell align="center" component="th" scope="row">
                   {user.Id_User}
                 </TableCell>
-                <TableCell align="left">{user.lastname}</TableCell>
+                <TableCell align="left">{user.lastname} {user.firstname}</TableCell>
                 <TableCell align="left">{user.email}</TableCell>
                 <TableCell align="center">{user.role}</TableCell>
                 <TableCell align="center">{user.certification ? 'Yes' : 'No'}</TableCell>
@@ -118,10 +126,10 @@ const UserList = () => {
                   <IconButton aria-label="view" onClick={ () => handleViewUser(user.Id_User)}>
                     <VisibilityIcon />
                   </IconButton>
-                  <IconButton aria-label="edit">
+                  <IconButton aria-label="edit" onClick={ () => handleEditUser(user.Id_User)}>
                     <EditIcon />
                   </IconButton>
-                  <IconButton aria-label="delete">
+                  <IconButton aria-label="delete" onClick={ () => handleDeleteUser(user.Id_User)}>
                     <DeleteIcon />
                   </IconButton>
                 </TableCell>
