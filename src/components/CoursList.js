@@ -1,14 +1,14 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TableFooter, TablePagination, IconButton, Stack, Button, Chip, TextField, MenuItem } from '@mui/material';
 import { createFilterOptions } from '@mui/material';
 import { SearchContext } from '../contexts/SearchContext';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import VisibilityIcon from '@mui/icons-material/Visibility';
-import { cours } from '../datas/data';
 import '../styles/App.css';
 import TablePaginationActions from './TablePaginationActions';
 import SearchBar from './SearchBar';
+import axios from 'axios';
 
 const CoursList = () => {
   const { searchTerm, setSearchTerm } = useContext(SearchContext);
@@ -18,22 +18,22 @@ const CoursList = () => {
   const [coachFilter, setCoachFilter] = useState('');
   const [costFilter, setCostFilter] = useState('');
   const [certificationFilter, setCertificationFilter] = useState('');
+  const [cours, setAllCours] = useState([]);
+
+  useEffect(() => {
+    axios.get(`http://localhost:3001/cours`)
+      .then(response => {
+        setAllCours(response.data); 
+      })
+      .catch(error => {
+        console.error('Il y a eu une erreur!', error);
+      });
+  }, []);
 
   const filterOptions = createFilterOptions({
     matchFrom: 'start',
     stringify: (option) => option.name,
   });
-
-  const filteredCours = cours.filter(cours =>
-    (cours.name.toLowerCase().includes(searchTerm.toLowerCase()) || cours.coachName.toLowerCase().includes(searchTerm.toLowerCase())) &&
-    (durationFilter === '' || cours.duration === parseInt(durationFilter)) &&
-    (coachFilter === '' || cours.coachName.toLowerCase().includes(coachFilter.toLowerCase())) &&
-    (costFilter === '' || cours.cost === parseInt(costFilter)) && // Comparaison en nombre
-    (certificationFilter === '' || (certificationFilter === 'Oui' && cours.certification === 'Active') || (certificationFilter === 'Non' && cours.certification !== 'Active'))
-);
-
-
-  const emptyRows = page > 0 ? Math.max(0, (1 + page) * coursPerPage - filteredCours.length) : 0;
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -43,6 +43,16 @@ const CoursList = () => {
     setCoursPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
+
+  const filteredCours = cours.filter(cours =>
+    (!searchTerm || cours.name.toLowerCase().includes(searchTerm.toLowerCase()) || cours.coachName.toLowerCase().includes(searchTerm.toLowerCase())) &&
+    (!durationFilter || cours.duration === parseInt(durationFilter)) &&
+    (!coachFilter || cours.coachName.toLowerCase().includes(coachFilter.toLowerCase())) &&
+    (!costFilter || cours.cost === parseInt(costFilter)) && 
+    (!certificationFilter || (certificationFilter === 'Oui' && cours.certification === 'Active') || (certificationFilter === 'Non' && cours.certification !== 'Active'))
+  );
+
+  const emptyRows = page > 0 ? Math.max(0, (1 + page) * coursPerPage - filteredCours.length) : 0;
 
   return (
     <div className="fullPageContainer">
@@ -56,7 +66,6 @@ const CoursList = () => {
           style={{ width: 150 }}
         >
           <MenuItem value="">All</MenuItem>
-          {/* Add specific duration options */}
           <MenuItem value="1">1 mois</MenuItem>
           <MenuItem value="2">2 mois</MenuItem>
           <MenuItem value="3">3 mois</MenuItem>
@@ -69,7 +78,6 @@ const CoursList = () => {
           style={{ width: 150 }}
         >
           <MenuItem value="">All</MenuItem>
-          {/* Add specific cost options */}
           <MenuItem value="50">$50</MenuItem>
           <MenuItem value="100">$100</MenuItem>
           <MenuItem value="150">$150</MenuItem>
@@ -100,7 +108,6 @@ const CoursList = () => {
           <TableHead>
             <TableRow>
               <TableCell style={{ fontWeight: "bold" }} align="center">ID</TableCell>
-              <TableCell style={{ fontWeight: "bold" }} align="left">Coach Name</TableCell>
               <TableCell style={{ fontWeight: "bold" }} align="left">Name</TableCell>
               <TableCell style={{ fontWeight: "bold" }} align="left">Description</TableCell>
               <TableCell style={{ fontWeight: "bold" }} align="center">Duration</TableCell>
@@ -112,17 +119,10 @@ const CoursList = () => {
           <TableBody>
             {filteredCours.slice(page * coursPerPage, page * coursPerPage + coursPerPage).map((cours) => (
               <TableRow key={cours.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                <TableCell align="center" component="th" scope="row">
-                  {cours.id}
-                </TableCell>
-                <TableCell align="left">
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
-                    {cours.coachName}
-                  </div>
-                </TableCell>
+                <TableCell align="center">{cours.id}</TableCell>
                 <TableCell align="left">{cours.name}</TableCell>
                 <TableCell align="left">{cours.description}</TableCell>
-                <TableCell align="center">{`${cours.duration}  mois`}</TableCell>
+                <TableCell align="center">{`${cours.duration} mois`}</TableCell>
                 <TableCell align="center">{`${cours.cost}€`}</TableCell>
                 <TableCell align="center">{cours.certification === 'Active' ? 'Oui' : 'Non'}</TableCell>
                 <TableCell align="center">
