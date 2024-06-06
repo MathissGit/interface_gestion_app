@@ -6,7 +6,7 @@ import UserProfile from './UserProfile';
 import '../styles/App.css';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
-import CourseList from './CourseList';
+import CoursList from './CoursList';
 import CoachList from './CoachList';
 import PatientList from './PatientList';
 import ListUsers from './UsersList'; 
@@ -64,7 +64,7 @@ const App = () => {
                                 <Route path="/" element={<Dashboard />} />
                                 <Route path="/utilisateurs" element={<ListUsers />} />
                                 <Route path="/profile" element={<UserProfile />} />
-                                <Route path="/cours" element={<CourseList />} />
+                                <Route path="/cours" element={<CoursList />} />
                                 <Route path="/plans" element={<PlansList />} />
                                 <Route path="/coaches" element={<CoachList />} />
                                 <Route path="/patients" element={<PatientList />} />
