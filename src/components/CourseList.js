@@ -1,6 +1,6 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TableFooter, TablePagination, IconButton, Stack, Button, Chip, TextField, MenuItem } from '@mui/material';
-import { createFilterOptions } from '@mui/material';
+import { Autocomplete, createFilterOptions } from '@mui/material';
 import { SearchContext } from '../contexts/SearchContext';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -19,6 +19,10 @@ const CoursList = () => {
   const [costFilter, setCostFilter] = useState('');
   const [certificationFilter, setCertificationFilter] = useState('');
 
+  useEffect(() => {
+    setPage(0);
+  }, [searchTerm, durationFilter, coachFilter, costFilter, certificationFilter]);
+
   const filterOptions = createFilterOptions({
     matchFrom: 'start',
     stringify: (option) => option.name,
@@ -28,10 +32,9 @@ const CoursList = () => {
     (cours.name.toLowerCase().includes(searchTerm.toLowerCase()) || cours.coachName.toLowerCase().includes(searchTerm.toLowerCase())) &&
     (durationFilter === '' || cours.duration === parseInt(durationFilter)) &&
     (coachFilter === '' || cours.coachName.toLowerCase().includes(coachFilter.toLowerCase())) &&
-    (costFilter === '' || cours.cost === parseInt(costFilter)) && // Comparaison en nombre
+    (costFilter === '' || cours.cost === parseInt(costFilter)) &&
     (certificationFilter === '' || (certificationFilter === 'Oui' && cours.certification === 'Active') || (certificationFilter === 'Non' && cours.certification !== 'Active'))
-);
-
+  );
 
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * coursPerPage - filteredCours.length) : 0;
 
@@ -56,7 +59,6 @@ const CoursList = () => {
           style={{ width: 150 }}
         >
           <MenuItem value="">All</MenuItem>
-          {/* Add specific duration options */}
           <MenuItem value="1">1 mois</MenuItem>
           <MenuItem value="2">2 mois</MenuItem>
           <MenuItem value="3">3 mois</MenuItem>
@@ -69,7 +71,6 @@ const CoursList = () => {
           style={{ width: 150 }}
         >
           <MenuItem value="">All</MenuItem>
-          {/* Add specific cost options */}
           <MenuItem value="50">$50</MenuItem>
           <MenuItem value="100">$100</MenuItem>
           <MenuItem value="150">$150</MenuItem>
@@ -122,7 +123,7 @@ const CoursList = () => {
                 </TableCell>
                 <TableCell align="left">{cours.name}</TableCell>
                 <TableCell align="left">{cours.description}</TableCell>
-                <TableCell align="center">{`${cours.duration}  mois`}</TableCell>
+                <TableCell align="center">{`${cours.duration} mois`}</TableCell>
                 <TableCell align="center">{`${cours.cost}€`}</TableCell>
                 <TableCell align="center">{cours.certification === 'Active' ? 'Oui' : 'Non'}</TableCell>
                 <TableCell align="center">

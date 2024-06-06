@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TableFooter, TablePagination, IconButton, Stack, Button, Chip, TextField, MenuItem } from '@mui/material';
 import { SearchContext } from '../contexts/SearchContext';
 import EditIcon from '@mui/icons-material/Edit';
@@ -16,13 +16,16 @@ const UserList = () => {
   const [roleFilter, setRoleFilter] = useState('');
   const [certificationFilter, setCertificationFilter] = useState('');
 
+  useEffect(() => {
+    setPage(0);
+  }, [searchTerm, roleFilter, certificationFilter]);
+
   const filteredUsers = users.filter(user =>
     (user.name && user.name.toLowerCase().includes(searchTerm.toLowerCase())) ||
     (user.email && user.email.toLowerCase().includes(searchTerm.toLowerCase())) &&
     (roleFilter === '' || user.role.toLowerCase() === roleFilter.toLowerCase()) &&
     (certificationFilter === '' || (certificationFilter === 'Oui' && user.certification) || (certificationFilter === 'Non' && !user.certification))
   );
-  
 
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * usersPerPage - filteredUsers.length) : 0;
 
@@ -49,7 +52,6 @@ const UserList = () => {
           <MenuItem value="">All</MenuItem>
           <MenuItem value="coach">Coach</MenuItem>
           <MenuItem value="patient">Patient</MenuItem>
-
         </TextField>
         <TextField
           select
