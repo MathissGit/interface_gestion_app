@@ -4,10 +4,10 @@ import { SearchContext } from '../contexts/SearchContext';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import VisibilityIcon from '@mui/icons-material/Visibility';
-import { users } from '../datas/data';
 import '../styles/App.css';
 import TablePaginationActions from './TablePaginationActions';
 import SearchBar from './SearchBar';
+import axios from 'axios';
 
 const UserList = () => {
   const { searchTerm, setSearchTerm } = useContext(SearchContext);
@@ -15,6 +15,17 @@ const UserList = () => {
   const [usersPerPage, setUsersPerPage] = useState(5);
   const [roleFilter, setRoleFilter] = useState('');
   const [certificationFilter, setCertificationFilter] = useState('');
+  const [users, setAllUsers] = useState([]);
+
+  useEffect(() => {
+    axios.get(`http://localhost:3001/users`)
+      .then(response => {
+        setAllUsers(response.data); 
+      })
+      .catch(error => {
+        console.error('Il y a eu une erreur!', error);
+      });
+  }, []);
 
   useEffect(() => {
     setPage(0);
