@@ -6,23 +6,17 @@ const UserDetails = () => {
   const { userId } = useParams();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [user, setUser] = useState([]);
+  const [user, setUser] = useState(null);
 
-
-   useEffect(() => {
-     const fetchUser = async () => {
-       try {
-        const response = axios.get("user/${userId}").then(response => {
-            setUser(response.data); 
-          })
-        if (!response.ok) {
-          throw new Error("HTTP error! Status: ${response.status}");
-        }
-        const data = await response.json();
-        setUser(data);
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const response = await axios.get(`/api/user/${userId}`);
+        console.log(response.data); // Ajoutez un log pour vérifier la réponse
+        setUser(response.data);
       } catch (err) {
+        console.error(err); // Ajoutez un log pour vérifier l'erreur
         setError(err.message);
-        console.log("Test");
       } finally {
         setLoading(false);
       }
@@ -31,16 +25,16 @@ const UserDetails = () => {
     fetchUser();
   }, [userId]);
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error}</p>;
-  if (!user) return <p>No user found</p>;
+  if (loading) return <p>Chargement...</p>;
+  if (error) return <p>Erreur : {error}</p>;
+  if (!user) return <p>Aucun utilisateur trouvé</p>;
 
   return (
     <div>
       <h1>{user.name}</h1>
-      <p>Email: {user.email}</p>
-      <p>Role: {user.role}</p>
-      <p>Certification: {user.certification ? 'Yes' : 'No'}</p>
+      <p>Email : {user.email}</p>
+      <p>Rôle : {user.role}</p>
+      <p>Certification : {user.certification ? 'Oui' : 'Non'}</p>
     </div>
   );
 };
