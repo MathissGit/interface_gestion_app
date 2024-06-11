@@ -39,6 +39,11 @@ const readPlans = require('./CRUD/plans/read');
 const delPlans = require('./CRUD/plans/delete');
 const upsertPlans = require('./CRUD/plans/upsert');
 
+// TRANSACTIONS PATHS
+const readAllTransactions = require('./CRUD/transactions/readAll');
+const readTransactions = require('./CRUD/transactions/read');
+const delTransactions = require('./CRUD/transactions/delete');
+
 // APP_USER ROUTES
 router.route('/user/:userId')
     .get(readUser(db))
@@ -55,7 +60,7 @@ router.route('/patients')
     .get(readAllPatients(db));
 
 // COURS ROUTES
-router.route('/cour/:userId')
+router.route('/cour/:courId')
     .get(readCours(db))
     .delete(delCours(db));
 router.route('/cour')
@@ -64,13 +69,20 @@ router.route('/cours')
     .get(readAllCours(db));
 
 // PLANS ROUTES
-router.route('/plan/:userId')
+router.route('/plan/:planId')
     .get(readPlans(db))
     .delete(delPlans(db));
 router.route('/plan')
     .put(upsertPlans(db));
 router.route('/plans')
     .get(readAllPlans(db));
+
+// TRANSACTIONS ROUTES
+router.route('/transaction/:transactionId')
+    .get(readTransactions(db))
+    .delete(delTransactions(db));
+router.route('/transactions')
+    .get(readAllTransactions(db));
 
 app.use(router);
 

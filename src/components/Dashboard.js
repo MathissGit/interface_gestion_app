@@ -1,7 +1,5 @@
-import React, { useState, useEffect, useHistory  } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableRow, Paper, IconButton, Avatar, Box, Grid, Button } from '@mui/material';
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
 import { LineChart } from '@mui/x-charts/LineChart';
 import { BarChart } from '@mui/x-charts/BarChart';
 import { styled } from '@mui/material/styles';
@@ -20,6 +18,7 @@ function Dashboard() {
     const [coachs, setAllCoach] = useState([]);
     const [users, setAllUsers] = useState([]);
     const [cours, setAllCours] = useState([]);
+    const [transactions, setAllTransactions] = useState([]);
 
     const navigate = useNavigate();
 
@@ -41,6 +40,16 @@ function Dashboard() {
         axios.get(`http://localhost:3001/users`)
         .then(response => {
             setAllUsers(response.data); 
+        })
+        .catch(error => {
+            console.error('Il y a eu une erreur!', error);
+        });
+    }, []);
+
+    useEffect(() => {
+        axios.get(`http://localhost:3001/transactions`)
+        .then(response => {
+            setAllTransactions(response.data); 
         })
         .catch(error => {
             console.error('Il y a eu une erreur!', error);
@@ -76,7 +85,7 @@ function Dashboard() {
                     <Grid item xs={4}>
                         <Item>
                             Transactions
-                            <h2>10</h2>
+                            <h2>{transactions.length}</h2>
                         </Item>
                     </Grid>
                     <Grid item xs={7}>
