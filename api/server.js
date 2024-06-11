@@ -9,10 +9,10 @@ const port = 3001;
 app.use(cors());
 app.use(express.json());
 
-// Ouvrir la base de données SQLite locale
+// Ouvrir la base de données SQLite local
 const db = new sqlite3.Database('./database/database.db', (err) => {
   if (err) {
-    console.error('Erreur lors de l\'ouverture de la base de données :', err);
+    console.error('Erreur lors de l\'ouverture de la base de données:', err);
   } else {
     console.log('Connecté à la base de données SQLite.');
   }
@@ -41,35 +41,38 @@ const upsertPlans = require('./CRUD/plans/upsert');
 
 // APP_USER ROUTES
 router.route('/user/:userId')
-    .get((req, res, next) => { console.log(`GET /user/${req.params.userId}`); next(); }, readUser(db))
-    .delete((req, res, next) => { console.log(`DELETE /user/${req.params.userId}`); next(); }, delUser(db))
-    .put((req, res, next) => { console.log('PUT /user'); next(); }, upsertUser(db));
+    .get(readUser(db))
+    .delete(delUser(db));
+router.route('/user')
+    .put(upsertUser(db));
 router.route('/users')
-    .get((req, res, next) => { console.log('GET /users'); next(); }, readAllAppUsers(db));
+    .get(readAllAppUsers(db));
 router.route('/admins')
-    .get((req, res, next) => { console.log('GET /admins'); next(); }, readAllAdmins(db));
+    .get(readAllAdmins(db));
 router.route('/coachs')
-    .get((req, res, next) => { console.log('GET /coachs'); next(); }, readAllCoachs(db));
+    .get(readAllCoachs(db));
 router.route('/patients')
-    .get((req, res, next) => { console.log('GET /patients'); next(); }, readAllPatients(db));
+    .get(readAllPatients(db));
 
 // COURS ROUTES
 router.route('/cour/:userId')
-    .get((req, res, next) => { console.log(`GET /cour/${req.params.userId}`); next(); }, readCours(db))
-    .delete((req, res, next) => { console.log(`DELETE /cour/${req.params.userId}`); next(); }, delCours(db))
-    .put((req, res, next) => { console.log('PUT /cour'); next(); }, upsertCours(db));
+    .get(readCours(db))
+    .delete(delCours(db));
+router.route('/cour')
+    .put(upsertCours(db));
 router.route('/cours')
-    .get((req, res, next) => { console.log('GET /cours'); next(); }, readAllCours(db));
+    .get(readAllCours(db));
 
 // PLANS ROUTES
 router.route('/plan/:userId')
-    .get((req, res, next) => { console.log(`GET /plan/${req.params.userId}`); next(); }, readPlans(db))
-    .delete((req, res, next) => { console.log(`DELETE /plan/${req.params.userId}`); next(); }, delPlans(db))
-    .put((req, res, next) => { console.log('PUT /plan'); next(); }, upsertPlans(db));
+    .get(readPlans(db))
+    .delete(delPlans(db));
+router.route('/plan')
+    .put(upsertPlans(db));
 router.route('/plans')
-    .get((req, res, next) => { console.log('GET /plans'); next(); }, readAllPlans(db));
+    .get(readAllPlans(db));
 
-app.use('/api', router);
+app.use(router);
 
 app.listen(port, () => {
   console.log(`Serveur backend en cours d'exécution sur le port ${port}`);
