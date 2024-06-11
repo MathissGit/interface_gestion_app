@@ -1,11 +1,12 @@
-import React from 'react';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, IconButton, Avatar, Box, Grid } from '@mui/material';
+import React, { useState, useEffect, useHistory  } from 'react';
+import { Table, TableBody, TableCell, TableContainer, TableRow, Paper, IconButton, Avatar, Box, Grid, Button } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { LineChart } from '@mui/x-charts/LineChart';
 import { BarChart } from '@mui/x-charts/BarChart';
 import { styled } from '@mui/material/styles';
-import { users, cours, plan } from '../datas/data';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -16,9 +17,45 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 function Dashboard() {
-    const coaches = users.filter(user => user.role === 'Coach');
-    const coursActifs = cours.filter(cours => cours.certification === "Active")
-    const coursInactifs = cours.filter(cours => cours.certification === "Inactive")
+    const [coachs, setAllCoach] = useState([]);
+    const [users, setAllUsers] = useState([]);
+    const [cours, setAllCours] = useState([]);
+
+    const navigate = useNavigate();
+
+    const handleViewAllClick = () => {
+        navigate(`/users/`);
+    };
+  
+    useEffect(() => {
+      axios.get(`http://localhost:3001/coachs`)
+        .then(response => {
+          setAllCoach(response.data); 
+        })
+        .catch(error => {
+          console.error('Il y a eu une erreur!', error);
+        });
+    }, []);
+
+    useEffect(() => {
+        axios.get(`http://localhost:3001/users`)
+        .then(response => {
+            setAllUsers(response.data); 
+        })
+        .catch(error => {
+            console.error('Il y a eu une erreur!', error);
+        });
+    }, []);
+
+    useEffect(() => {
+        axios.get(`http://localhost:3001/cours`)
+        .then(response => {
+            setAllCours(response.data); 
+        })
+        .catch(error => {
+            console.error('Il y a eu une erreur!', error);
+        });
+    }, []);
 
     return (
         <div>
@@ -28,21 +65,18 @@ function Dashboard() {
                         <Item>
                             Utilisateurs
                             <h2>{users.length}</h2>
-                            <p>+20%</p>
                         </Item>
                     </Grid>
                     <Grid item xs={4}>
                         <Item>
                             Cours actifs
-                            <h2>{coursActifs.length}</h2>
-                            <p>{coursInactifs.length} inactifs</p>
+                            <h2>{cours.length}</h2>
                         </Item>
                     </Grid>
                     <Grid item xs={4}>
                         <Item>
-                            Rendez-vous à venir
+                            Transactions
                             <h2>10</h2>
-                            <p>15 en attentes</p>
                         </Item>
                     </Grid>
                     <Grid item xs={7}>
@@ -66,24 +100,19 @@ function Dashboard() {
                         <Item>
                             <TableContainer component={Paper}>
                                 <Table aria-label="simple table">
-                                    <h2 style={{ paddingLeft: 10}}>Coachs</h2>
+                                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                                        <h2 style={{ margin: 0, padding: 10 }}>Coachs</h2>
+                                        <Button color="success" variant="outlined" onClick={handleViewAllClick}>Voir plus</Button>
+                                    </div>
                                     <TableBody>
-                                        {coaches.map((user) => (
+                                        {coachs.slice(0, 4).map((user) => (
                                             <TableRow key={user.email}>
-                                                <TableCell style={{ display:'flex', paddingRight: '0' }} component="th" scope="row">
+                                                <TableCell style={{ display: 'flex', paddingRight: '0' }} component="th" scope="row">
                                                     <Avatar src={user.avatar} alt={`${user.firstname} ${user.lastname}`} />
-                                                    <div style={{ paddingLeft: 15}}>
+                                                    <div style={{ paddingLeft: 15 }}>
                                                         <p style={{ padding: '0', margin: 0, fontWeight: 'bold' }}>{user.firstname + ' ' + user.lastname}</p>
                                                         <p style={{ margin: 0 }}>{user.email}</p>
                                                     </div>
-                                                </TableCell>
-                                                <TableCell style={{ paddingRight: '0', paddingLeft: '0', textAlign: 'center' }}>
-                                                    <IconButton aria-label="edit">
-                                                        <EditIcon />
-                                                    </IconButton>
-                                                    <IconButton aria-label="delete">
-                                                        <DeleteIcon />
-                                                    </IconButton>
                                                 </TableCell>
                                             </TableRow>
                                         ))}
