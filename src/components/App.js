@@ -12,8 +12,9 @@ import ListUsers from './UsersList';
 import PlansList from './PlansList'; 
 import Dashboard from './Dashboard'; 
 import UserDetails from './UserDetails';
-import Calendar from './Calendar';  // Importer le composant Calendar
-import Messages from './Messages';  // Importer le composant Messages
+import Calendar from './Calendar';  
+import Messages from './Messages';
+import Transaction from './Transaction';
 
 const App = () => {
     const [darkMode, setDarkMode] = useState(false);
@@ -60,8 +61,9 @@ const App = () => {
                                 <Route path="/plans" element={<PlansList />} />
                                 <Route path="/course" element={<CoursList />} />
                                 <Route path="/user/:userId" element={<UserDetails />} />
-                                <Route path="/calendar" element={<Calendar />} />  {/* Ajouter la route du calendrier */}
-                                <Route path="/messages" element={<Messages />} />  {/* Ajouter la route des messages */}
+                                <Route path="/calendar" element={<Calendar />} /> 
+                                <Route path="/messages" element={<Messages />} />
+                                <Route path="/transaction" element={<Transaction />} />  
                             </Routes>
                         </div>
                     </div>
