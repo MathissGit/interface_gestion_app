@@ -100,7 +100,8 @@ export const users = [
         plan: 'P1',
         role: 'patient',
         avatar: FabriceEboue,
-        dateRegistration: '28/05/2024'
+        dateRegistration: '28/05/2024',
+        etat: 'paye'
     },
     {
         id: '2',
@@ -111,7 +112,8 @@ export const users = [
         certification: 'Active',
         role: 'Coach',
         avatar: FabriceEboue,
-        dateRegistration: '28/05/2024'
+        dateRegistration: '28/05/2024',
+        etat: 'non paye'
     },
     {
         id: '3',
@@ -122,7 +124,8 @@ export const users = [
         plan: 'P1',
         role: 'patient',
         avatar: FabriceEboue,
-        dateRegistration: '28/05/2024'
+        dateRegistration: '28/05/2024',
+        etat: 'paye'
     },
     {
         id: '4',
@@ -133,7 +136,8 @@ export const users = [
         plan: 'P3',
         role: 'patient',
         avatar: FabriceEboue,
-        dateRegistration: '28/05/2024'
+        dateRegistration: '28/05/2024',
+        etat: 'non paye'
     },
     {
         id: '5',
@@ -144,7 +148,8 @@ export const users = [
         plan: 'P2',
         role: 'patient',
         avatar: FabriceEboue,
-        dateRegistration: '28/05/2024'
+        dateRegistration: '28/05/2024',
+        etat: 'paye'
     },
     {
         id: '6',
@@ -154,7 +159,8 @@ export const users = [
         email: 'admin@admin.com',
         role: 'admin',
         avatar: FabriceEboue,
-        dateRegistration: '28/05/2024'
+        dateRegistration: '28/05/2024',
+        etat: 'paye'
     },
     {
         id: '7',
@@ -165,7 +171,8 @@ export const users = [
         plan: 'P1',
         role: 'patient',
         avatar: FabriceEboue,
-        dateRegistration: '28/05/2024'
+        dateRegistration: '28/05/2024',
+        etat: 'paye'
     },
     {
         id: '8',
@@ -176,7 +183,8 @@ export const users = [
         plan: 'P3',
         role: 'patient',
         avatar: FabriceEboue,
-        dateRegistration: '28/05/2024'
+        dateRegistration: '28/05/2024',
+        etat: 'paye'
     },
     {
         id: '9',
@@ -187,7 +195,8 @@ export const users = [
         plan: 'P2',
         role: 'patient',
         avatar: FabriceEboue,
-        dateRegistration: '28/05/2024'
+        dateRegistration: '28/05/2024',
+        etat: 'paye'
     },
     {
         id: '10',
@@ -198,7 +207,8 @@ export const users = [
         certification: 'Inactive',
         role: 'Coach',
         avatar: FabriceEboue,
-        dateRegistration: '28/05/2024'
+        dateRegistration: '28/05/2024',
+        etat: 'non paye'
     },
     {
         id: '11',
@@ -209,7 +219,8 @@ export const users = [
         plan: 'P1',
         role: 'patient',
         avatar: FabriceEboue,
-        dateRegistration: '28/05/2024'
+        dateRegistration: '28/05/2024',
+        etat: 'paye'
     },
     {
         id: '12',
@@ -220,7 +231,8 @@ export const users = [
         plan: 'P2',
         role: 'patient',
         avatar: FabriceEboue,
-        dateRegistration: '28/05/2024'
+        dateRegistration: '28/05/2024',
+        etat: 'non paye'
     },
     {
         id: '13',
@@ -231,7 +243,8 @@ export const users = [
         plan: 'P3',
         role: 'patient',
         avatar: FabriceEboue,
-        dateRegistration: '28/05/2024'
+        dateRegistration: '28/05/2024',
+        etat: 'paye'
     },
     {
         id: '14',
@@ -242,7 +255,8 @@ export const users = [
         certification: 'None',
         role: 'Coach',
         avatar: FabriceEboue,
-        dateRegistration: '28/05/2024'
+        dateRegistration: '28/05/2024',
+        etat: 'paye'
     },
     {
         id: '15',
@@ -253,7 +267,8 @@ export const users = [
         plan: 'P1',
         role: 'patient',
         avatar: FabriceEboue,
-        dateRegistration: '28/05/2024'
+        dateRegistration: '28/05/2024',
+        etat: 'paye'
     },
     {
         id: '16',
@@ -264,7 +279,8 @@ export const users = [
         plan: 'P2',
         role: 'patient',
         avatar: FabriceEboue,
-        dateRegistration: '28/05/2024'
+        dateRegistration: '28/05/2024',
+        etat: 'paye'
     },
     {
         id: '17',
@@ -275,7 +291,8 @@ export const users = [
         plan: 'P3',
         role: 'patient',
         avatar: FabriceEboue,
-        dateRegistration: '28/05/2024'
+        dateRegistration: '28/05/2024',
+        etat: 'non paye'
     },
     {
         id: '18',
@@ -286,7 +303,8 @@ export const users = [
         certification: 'Active',
         role: 'Coach',
         avatar: FabriceEboue,
-        dateRegistration: '28/05/2024'
+        dateRegistration: '28/05/2024',
+        etat: 'paye'
     },
     {
         id: '19',
@@ -297,7 +315,8 @@ export const users = [
         plan: 'P1',
         role: 'patient',
         avatar: FabriceEboue,
-        dateRegistration: '28/05/2024'
+        dateRegistration: '28/05/2024',
+        etat: 'non paye'
     },
     {
         id: '20',
@@ -307,6 +326,7 @@ export const users = [
         email: 'antoine@duval.com',
         plan: 'P2',
         role: 'patient',
-        avatar: FabriceEboue,
+        avatar: FabriceEboue,,
+        etat: 'paye'
     }
 ]
