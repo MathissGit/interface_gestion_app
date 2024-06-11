@@ -256,3 +256,20 @@ DROP VIEW IF EXISTS "Patient";
 CREATE VIEW Patient AS
 SELECT * FROM App_User WHERE role = 'patient';
 COMMIT;
+DROP VIEW IF EXISTS PayDetails;
+CREATE VIEW PayDetails AS
+SELECT 
+    Pay.Id_User,
+    App_User.lastname,
+    App_User.firstname,
+    App_User.email,
+    Pay.Id_Plan,
+    Plans.name AS plan_name,
+    Plans.description AS plan_description,
+    Plans.cost AS plan_cost
+FROM 
+    Pay
+JOIN 
+    App_User ON Pay.Id_User = App_User.Id_User
+JOIN 
+    Plans ON Pay.Id_Plan = Plans.Id_Plan;

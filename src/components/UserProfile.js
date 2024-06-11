@@ -31,11 +31,11 @@ function UserProfile() {
                         <div className="middleContainer" style={{ marginTop: '20px' }}>
                             <div>
                                 <div style={{ marginBottom: '10px' }}>
-                                    <label>Email</label>
+                                    <h3>Email</h3>
                                     <input type="email" value={user.email} readOnly style={{ width: '100%', padding: '8px' }} />
                                 </div>
                                 <div style={{ marginBottom: '10px' }}>
-                                    <label>Date of birth</label>
+                                    <h3>Date of birth</h3>
                                     <input type="text" value={user.datebirth} readOnly style={{ width: '100%', padding: '8px' }} />
                                 </div>
                             </div>

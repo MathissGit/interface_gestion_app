@@ -75,6 +75,7 @@ const PlansList = () => {
               <TableCell style={{ fontWeight: "bold" }} align="center">ID</TableCell>
               <TableCell style={{ fontWeight: "bold" }} align="left">Name</TableCell>
               <TableCell style={{ fontWeight: "bold" }} align="left">Description</TableCell>
+              <TableCell style={{ fontWeight: "bold" }} align="center">Coût</TableCell>
               <TableCell style={{ fontWeight: "bold" }} align="center">Action</TableCell>
             </TableRow>
           </TableHead>
@@ -90,6 +91,7 @@ const PlansList = () => {
                   </div>
                 </TableCell>
                 <TableCell align="left">{plan.description}</TableCell>
+                <TableCell align="center">{plan.cost}</TableCell>
                 <TableCell align="center">
                   <IconButton aria-label="view">
                     <VisibilityIcon />
