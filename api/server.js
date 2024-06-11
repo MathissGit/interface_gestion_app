@@ -42,8 +42,7 @@ const upsertPlans = require('./CRUD/plans/upsert');
 // APP_USER ROUTES
 router.route('/user/:userId')
     .get((req, res, next) => { console.log(`GET /user/${req.params.userId}`); next(); }, readUser(db))
-    .delete((req, res, next) => { console.log(`DELETE /user/${req.params.userId}`); next(); }, delUser(db));
-router.route('/user')
+    .delete((req, res, next) => { console.log(`DELETE /user/${req.params.userId}`); next(); }, delUser(db))
     .put((req, res, next) => { console.log('PUT /user'); next(); }, upsertUser(db));
 router.route('/users')
     .get((req, res, next) => { console.log('GET /users'); next(); }, readAllAppUsers(db));
@@ -57,8 +56,7 @@ router.route('/patients')
 // COURS ROUTES
 router.route('/cour/:userId')
     .get((req, res, next) => { console.log(`GET /cour/${req.params.userId}`); next(); }, readCours(db))
-    .delete((req, res, next) => { console.log(`DELETE /cour/${req.params.userId}`); next(); }, delCours(db));
-router.route('/cour')
+    .delete((req, res, next) => { console.log(`DELETE /cour/${req.params.userId}`); next(); }, delCours(db))
     .put((req, res, next) => { console.log('PUT /cour'); next(); }, upsertCours(db));
 router.route('/cours')
     .get((req, res, next) => { console.log('GET /cours'); next(); }, readAllCours(db));
@@ -66,8 +64,7 @@ router.route('/cours')
 // PLANS ROUTES
 router.route('/plan/:userId')
     .get((req, res, next) => { console.log(`GET /plan/${req.params.userId}`); next(); }, readPlans(db))
-    .delete((req, res, next) => { console.log(`DELETE /plan/${req.params.userId}`); next(); }, delPlans(db));
-router.route('/plan')
+    .delete((req, res, next) => { console.log(`DELETE /plan/${req.params.userId}`); next(); }, delPlans(db))
     .put((req, res, next) => { console.log('PUT /plan'); next(); }, upsertPlans(db));
 router.route('/plans')
     .get((req, res, next) => { console.log('GET /plans'); next(); }, readAllPlans(db));
