@@ -1,3 +1,4 @@
+// src/Sidebar.js
 import React from 'react';
 import { List, ListItem, ListItemIcon, ListItemText, Switch, FormControlLabel } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
@@ -28,65 +29,52 @@ const Sidebar = ({ toggleDarkMode, darkMode }) => {
     }));
 
     return (
-
-        <StickyBox  className="sidebar">
+        <StickyBox className="sidebar">
             <List className="sidebar-list">
-                <ListItem className={`sidebar-item ${location.pathname === '/' ? 'active' : ''}`} button component={Link} to="/" >
+                <StyledListItem className={`sidebar-item ${location.pathname === '/' ? 'active' : ''}`} button component={Link} to="/">
                     <ListItemIcon>
                         <HomeIcon />
                     </ListItemIcon>
                     <ListItemText primary='Dashboard' className="list-item-text" />
-                </ListItem>
-                <ListItem className={`sidebar-item ${location.pathname === '/plans' ? 'active' : ''}`} button component={Link} to="/plans">
+                </StyledListItem>
+                <StyledListItem className={`sidebar-item ${location.pathname === '/plans' ? 'active' : ''}`} button component={Link} to="/plans">
                     <ListItemIcon>
                         <PostAddIcon />
                     </ListItemIcon>
                     <ListItemText primary='Plans' className="list-item-text" />
-                </ListItem>
-                <ListItem className={`sidebar-item ${location.pathname === '/course' ? 'active' : ''}`} button component={Link} to="/course">
+                </StyledListItem>
+                <StyledListItem className={`sidebar-item ${location.pathname === '/course' ? 'active' : ''}`} button component={Link} to="/course">
                     <ListItemIcon>
                         <SchoolIcon />
                     </ListItemIcon>
                     <ListItemText primary='Course' className="list-item-text" />
-                </ListItem>
-                {/* <ListItem className={`sidebar-item ${location.pathname === '/messages' ? 'active' : ''}`} button component={Link} to="/messages">
+                </StyledListItem>
+                <StyledListItem className={`sidebar-item ${location.pathname === '/messages' ? 'active' : ''}`} button component={Link} to="/messages">
                     <ListItemIcon>
                         <MessageIcon />
                     </ListItemIcon>
                     <ListItemText primary='Messages' className="list-item-text" />
-                </ListItem> */}
-                <ListItem className={`sidebar-item ${location.pathname === '/calendar' ? 'active' : ''}`} button component={Link} to="/calendar">
+                </StyledListItem>
+                <StyledListItem className={`sidebar-item ${location.pathname === '/calendar' ? 'active' : ''}`} button component={Link} to="/calendar">
                     <ListItemIcon>
                         <CalendarTodayIcon />
                     </ListItemIcon>
                     <ListItemText primary='Entrevue' className="list-item-text" />
-                </ListItem>
-                <ListItem className={`sidebar-item ${location.pathname === '/transaction' ? 'active' : ''}`} button component={Link} to="/transaction">
+                </StyledListItem>
+                <StyledListItem className={`sidebar-item ${location.pathname === '/transaction' ? 'active' : ''}`} button component={Link} to="/transaction">
                     <ListItemIcon>
                         <PaymentIcon />
                     </ListItemIcon>
                     <ListItemText primary='Transaction' className="list-item-text" />
-                </ListItem>
-                <ListItem className={`sidebar-item ${location.pathname === '/users' ? 'active' : ''}`} button component={Link} to="/users">
+                </StyledListItem>
+                <StyledListItem className={`sidebar-item ${location.pathname === '/users' ? 'active' : ''}`} button component={Link} to="/users">
                     <ListItemIcon>
                         <GroupIcon />
                     </ListItemIcon>
-                    <ListItemText primary='Users' className="list-item-text" />
-                </ListItem>
-                {/* <ListItem className={`sidebar-item ${location.pathname === '/parametres' ? 'active' : ''}`} button component={Link} to="/parametres">
-                    <ListItemIcon>
-                        <SettingsIcon />
-                    </ListItemIcon>
-                    <ListItemText primary='Paramètres' className="list-item-text" />
-                </ListItem>
-                <ListItem className={`sidebar-item ${location.pathname === '/outils' ? 'active' : ''}`} button component={Link} to="/outils">
-                    <ListItemIcon>
-                        <BuildIcon />
-                    </ListItemIcon>
-                    <ListItemText primary='Outils' className="list-item-text" />
-                </ListItem> */}
+                    <ListItemText primary='Utilisateurs' className="list-item-text" />
+                </StyledListItem>
                 <div className="sidebar-bottom">
-                    <ListItem className="sidebar-item" >
+                    <StyledListItem className="sidebar-item">
                         <ListItemIcon>
                             <Brightness2Icon />
                         </ListItemIcon>
@@ -95,13 +83,13 @@ const Sidebar = ({ toggleDarkMode, darkMode }) => {
                             label="Theme"
                             className="list-item-text"
                         />
-                    </ListItem>
-                    <ListItem className={`sidebar-item ${location.pathname === '/profile' ? 'active' : ''}`} button component={Link} to="/profile">
+                    </StyledListItem>
+                    <StyledListItem className={`sidebar-item ${location.pathname === '/profile' ? 'active' : ''}`} button component={Link} to="/profile">
                         <ListItemIcon>
                             <AccountCircleIcon />
                         </ListItemIcon>
                         <ListItemText primary='Profile' className="list-item-text" />
-                    </ListItem>
+                    </StyledListItem>
                 </div>
             </List>
         </StickyBox>

@@ -1,4 +1,3 @@
-// src/Calendar.js
 import React, { useState, useEffect } from 'react';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
@@ -8,7 +7,7 @@ const Calendar = () => {
     const [events, setEvents] = useState([]);
 
     useEffect(() => {
-        // Simuler la récupération des rendez-vous depuis une API ou base de données
+
         const fetchEvents = async () => {
             const appointments = [
                 { title: 'Meeting with Bob', date: '2024-06-14' },
