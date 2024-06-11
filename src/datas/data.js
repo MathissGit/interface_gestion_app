@@ -326,7 +326,7 @@ export const users = [
         email: 'antoine@duval.com',
         plan: 'P2',
         role: 'patient',
-        avatar: FabriceEboue,,
+        avatar: FabriceEboue,
         etat: 'paye'
     }
 ]
