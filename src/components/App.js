@@ -1,3 +1,4 @@
+// src/App.js
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { CssBaseline, ThemeProvider, createTheme } from '@mui/material';
@@ -11,6 +12,7 @@ import ListUsers from './UsersList';
 import PlansList from './PlansList'; 
 import Dashboard from './Dashboard'; 
 import UserDetails from './UserDetails';
+import Calendar from './Calendar';  // Importer le composant Calendar
 
 const App = () => {
     const [darkMode, setDarkMode] = useState(false);
@@ -39,18 +41,15 @@ const App = () => {
         color: theme.palette.text.secondary,
     }));
 
-    
-
     return (
         <ThemeProvider theme={theme}>
             <CssBaseline />
             <Router>
                 <div style={{ display: 'flex', backgroundColor }} className='dashboard'>
-                <Sidebar 
+                    <Sidebar 
                         toggleDarkMode={toggleDarkMode} 
                         darkMode={darkMode} 
                     />
-                    
                     <div className="fullPageContainer">
                         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '2vh'}}>
                             <Routes>
@@ -60,6 +59,7 @@ const App = () => {
                                 <Route path="/plans" element={<PlansList />} />
                                 <Route path="/course" element={<CoursList />} />
                                 <Route path="/user/:userId" element={<UserDetails />} />
+                                <Route path="/calendar" element={<Calendar />} />  {/* Ajouter la route du calendrier */}
                             </Routes>
                         </div>
                     </div>

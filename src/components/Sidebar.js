@@ -55,7 +55,7 @@ const Sidebar = ({ toggleDarkMode, darkMode }) => {
                     </ListItemIcon>
                     <ListItemText primary='Messages' className="list-item-text" />
                 </ListItem> */}
-                <ListItem className={`sidebar-item ${location.pathname === '/rendez-vous' ? 'active' : ''}`} button component={Link} to="/rendez-vous">
+                <ListItem className={`sidebar-item ${location.pathname === '/calendar' ? 'active' : ''}`} button component={Link} to="/calendar">
                     <ListItemIcon>
                         <CalendarTodayIcon />
                     </ListItemIcon>
