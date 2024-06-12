@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useLocation, useNavigate } from 'react-router-dom';
-import { TextField, Button, Stack, MenuItem } from '@mui/material';
+import { TextField, Button, Stack, MenuItem, Avatar } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
 import axios from 'axios';
 
 
@@ -64,14 +65,13 @@ const UserDetails = () => {
     <div className="fullPageContainer" style={{ alignItems: 'center' }}>
       <div className='profil'>
         <div className='display-picture'>
-          <img className='avatarProfil' src={user.avatar} alt={`${user.firstname} ${user.lastname}`}/>
+          <Avatar className='avatarProfil' src={user.avatar} alt={`${user.firstname} ${user.lastname}`} />
           <div className='backAvatar'></div>
         </div>
         <div className='banner'></div>
+        <h1 className='display-name'>{user.firstname} {user.lastname}</h1>
+        <p className='display-role'>Role: {user.role}</p>
         {action === 'view' && (
-          <>
-            <h1 className='display-name'>{user.firstname} {user.lastname}</h1>
-            <p className='display-role'>Role: {user.role}</p>
             <div className="middleContainer" style={{ marginTop: '20px' }}>
               <div>
                 <div style={{ marginBottom: '10px' }}>
@@ -88,11 +88,10 @@ const UserDetails = () => {
                 </div>
               </div>
             </div>
-          </>
         )}
         {action === 'edit' && (
           <div>
-            <h1>Edit User: <u>{user.lastname} {user.firstname}</u></h1>
+            <h1>Edit User :</h1>
             <form onSubmit={handleSubmit}>
               <Stack spacing={2}>
                 <TextField
@@ -149,9 +148,9 @@ const UserDetails = () => {
         )}
         {action === 'delete' && (
           <div>
-            <h1>Delete User : <u>{user.lastname} {user.firstname}</u> ?</h1>
+            <h1>Delete User ?</h1>
             <p>Are you sure you want to delete {user.lastname} {user.firstname}?</p>
-            <Button onClick={handleDelete} variant="contained" color="secondary">Yes, Delete</Button>
+            <Button onClick={handleDelete} variant="contained" color="error" startIcon={<DeleteIcon />}>Yes, Delete</Button>
             <Button onClick={() => navigate('/users')} variant="contained">Cancel</Button>
           </div>
         )}
