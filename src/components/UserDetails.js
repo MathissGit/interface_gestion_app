@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useLocation, useNavigate } from 'react-router-dom';
 import { TextField, Button, Stack, MenuItem } from '@mui/material';
-import '../styles/App.css';
 import axios from 'axios';
+
 
 const UserDetails = () => {
   const { userId } = useParams();
@@ -61,80 +61,101 @@ const UserDetails = () => {
   };
 
   return (
-    <div>
-      {action === 'view' && (
-        <div>
-          <h1>{user.lastname} {user.firstname}</h1>
-          <p>Email: {user.email}</p>
-          <p>Role: {user.role}</p>
-          <p>Certification: {user.certification ? 'Yes' : 'No'}</p>
+    <div className="fullPageContainer" style={{ alignItems: 'center' }}>
+      <div className='profil'>
+        <div className='display-picture'>
+          <img className='avatarProfil' src={user.avatar} alt={`${user.firstname} ${user.lastname}`}/>
+          <div className='backAvatar'></div>
         </div>
-      )}
-      {action === 'edit' && (
-        <div>
-          <h1>Edit User: <u>{user.lastname} {user.firstname}</u></h1>
-          <form onSubmit={handleSubmit}>
-            <Stack spacing={2}>
-              <TextField
-                label="First Name"
-                name="firstname"
-                value={user.firstname || ''}
-                onChange={handleInputChange}
-                fullWidth
-              />
-              <TextField
-                label="Last Name"
-                name="lastname"
-                value={user.lastname || ''}
-                onChange={handleInputChange}
-                fullWidth
-              />
-              <TextField
-                label="Date Birth"
-                name="datebirth"
-                value={user.datebirth || ''}
-                onChange={handleInputChange}
-                type="date"
-                fullWidth
-              />
-              <TextField
-                label="Email"
-                name="email"
-                value={user.email || ''}
-                onChange={handleInputChange}
-                fullWidth
-              />
-              <TextField
-                label="Role"
-                name="role"
-                value={user.role || ''}
-                onChange={handleInputChange}
-                fullWidth
-              />
-              <TextField
-                label="Certification"
-                name="certification"
-                value={user.certification ? 'Yes' : 'No'}
-                onChange={(e) => handleInputChange({ target: { name: 'certification', value: e.target.value === 'Yes' } })}
-                select
-                fullWidth
-              >
-                <MenuItem value="Yes">Yes</MenuItem>
-                <MenuItem value="No">No</MenuItem>
-              </TextField>
-              <Button type="submit" variant="contained" color="primary">Save</Button>
-            </Stack>
-          </form>
-        </div>
-      )}
-      {action === 'delete' && (
-        <div>
-          <h1>Delete User : <u>{user.lastname} {user.firstname}</u> ?</h1>
-          <p>Are you sure you want to delete {user.lastname} {user.firstname}?</p>
-          <button onClick={handleDelete}>Yes, Delete</button>
-          <button onClick={() => navigate('/users')}>Cancel</button>
-        </div>
-      )}
+        <div className='banner'></div>
+        {action === 'view' && (
+          <>
+            <h1 className='display-name'>{user.firstname} {user.lastname}</h1>
+            <p className='display-role'>Role: {user.role}</p>
+            <div className="middleContainer" style={{ marginTop: '20px' }}>
+              <div>
+                <div style={{ marginBottom: '10px' }}>
+                  <h3>Email</h3>
+                  <input type="email" value={user.email} readOnly style={{ width: '100%', padding: '8px' }} />
+                </div>
+                <div style={{ marginBottom: '10px' }}>
+                  <h3>Date of birth</h3>
+                  <input type="text" value={user.datebirth} readOnly style={{ width: '100%', padding: '8px' }} />
+                </div>
+                <div style={{ marginBottom: '10px' }}>
+                  <h3>Certification</h3>
+                  <input type="text" value={user.certification ? 'Yes' : 'No'} readOnly style={{ width: '100%', padding: '8px' }} />
+                </div>
+              </div>
+            </div>
+          </>
+        )}
+        {action === 'edit' && (
+          <div>
+            <h1>Edit User: <u>{user.lastname} {user.firstname}</u></h1>
+            <form onSubmit={handleSubmit}>
+              <Stack spacing={2}>
+                <TextField
+                  label="First Name"
+                  name="firstname"
+                  value={user.firstname || ''}
+                  onChange={handleInputChange}
+                  fullWidth
+                />
+                <TextField
+                  label="Last Name"
+                  name="lastname"
+                  value={user.lastname || ''}
+                  onChange={handleInputChange}
+                  fullWidth
+                />
+                <TextField
+                  label="Date Birth"
+                  name="datebirth"
+                  value={user.datebirth || ''}
+                  onChange={handleInputChange}
+                  type="date"
+                  fullWidth
+                />
+                <TextField
+                  label="Email"
+                  name="email"
+                  value={user.email || ''}
+                  onChange={handleInputChange}
+                  fullWidth
+                />
+                <TextField
+                  label="Role"
+                  name="role"
+                  value={user.role || ''}
+                  onChange={handleInputChange}
+                  fullWidth
+                />
+                <TextField
+                  label="Certification"
+                  name="certification"
+                  value={user.certification ? 'Yes' : 'No'}
+                  onChange={(e) => handleInputChange({ target: { name: 'certification', value: e.target.value === 'Yes' } })}
+                  select
+                  fullWidth
+                >
+                  <MenuItem value="Yes">Yes</MenuItem>
+                  <MenuItem value="No">No</MenuItem>
+                </TextField>
+                <Button type="submit" variant="contained" color="primary">Save</Button>
+              </Stack>
+            </form>
+          </div>
+        )}
+        {action === 'delete' && (
+          <div>
+            <h1>Delete User : <u>{user.lastname} {user.firstname}</u> ?</h1>
+            <p>Are you sure you want to delete {user.lastname} {user.firstname}?</p>
+            <Button onClick={handleDelete} variant="contained" color="secondary">Yes, Delete</Button>
+            <Button onClick={() => navigate('/users')} variant="contained">Cancel</Button>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
